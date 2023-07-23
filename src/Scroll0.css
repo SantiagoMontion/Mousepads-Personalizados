@@ -1,0 +1,40 @@
+.Banner-1 {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: end;
+
+  padding-bottom: 25px;
+  background-color: black;
+  height: 318px;
+  margin-top: 15px;
+  border-radius: 22px;
+}
+
+.Banner-cta {
+  border-radius: 33px;
+  background: #f29cb1;
+  width: 300px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-left: 25px;
+}
+
+.Banner-2 {
+    width: 50%;
+    background-color: black;
+    height: 280px;
+    border-radius: 22px;
+}
+
+.Banner-50 {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}

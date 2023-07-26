@@ -1,40 +1,112 @@
-.Banner-1 {
-  width: 100%;
+.card-container {
   display: flex;
-  justify-content: left;
-  align-items: end;
 
-  padding-bottom: 25px;
-  background-color: black;
-  height: 318px;
-  margin-top: 15px;
+  justify-content: space-between;
+  
+}
+
+.card {
+  width: 28.4%;
+  height: 608px;
+  text-align: left;
   border-radius: 22px;
+  position: relative; /* Para posicionar el contenido interno */
+  color: #fff; /* Color del texto para que se vea en contraste con la imagen */
+  padding: 20px; /* Espacio alrededor del contenido */
+  display: flex; /* Usamos flex para que el botón ocupe todo el espacio */
+  flex-direction: column; /* Los elementos dentro de la card se colocan en columna */
+  justify-content: flex-end;
+  margin-top: 16px;
+
 }
 
-.Banner-cta {
-  border-radius: 33px;
-  background: #f29cb1;
-  width: 300px;
-  height: 55px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  margin-left: 25px;
+.card-button:hover{transform: scale(1.03);}
+.card:hover{opacity: 0.94;}
+#card-1 {
+  
+  background: url("./Card-1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.4s;
 }
-
-.Banner-2 {
-    width: 50%;
-    background-color: black;
-    height: 280px;
-    border-radius: 22px;
+#card-2 {
+  background-image: url("./Card-2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.4s;
 }
-
-.Banner-50 {
-  display: flex;
+#card-3 {
+  background-image: url("./Card-3.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.4s;
+}
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
+  text-align: center;
+  padding: 25px;
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 18px;
+  text-align: left;
+  font-family: Poppins;
+font-size: 26px;
+font-style: normal;
+font-weight: 800;
+line-height: 120%; 
+}
+
+.card-subtitle {
+  font-size: 18px;
+  margin-bottom: 18px;
+  text-align: left;
+  font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 800;
+line-height: normal; 
+}
+
+.card-button {
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  width: 90%;
+  margin-left: -50px;
+  height: 55px;
+  border-radius: 12px;
+  background: #f29cb1;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  transition: all 0.4s;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .card {width: 100%;}
+  .card-title {font-size: 24px;}
+  .card-subtitle {font-size: 16px;}
 }

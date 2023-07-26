@@ -1,7 +1,9 @@
 import Logo from "./Logo.svg";
-import burger from "./burger.svg"
+import burger from "./burger.svg";
+import instagram_logo from "./instagram_logo.svg";
 import { Link, animateScroll as scroll } from "react-scroll";
 import React, { useState } from "react";
+import burger_close from "./close.svg";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,41 +13,106 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <div className="navbar-left">
-        <a href="https://www.mgmgamers.store" target="_blank">
+        <a href="/">
           <img className="mgm-logo" src={Logo}></img>
         </a>
       </div>
       <div className="navbar-middle">
-        <a href="/about" className="navbar-navlink">
+        <a
+          href="https://sites.google.com/view/mgmgamersblog/inicio"
+          target="_blank"
+          className="navbar-navlink"
+        >
           Blog
         </a>
-        
-        <a href="/about" className="navbar-navlink">
+
+        <a
+          href="https://www.mgmgamers.store"
+          target="_blank"
+          className="navbar-navlink"
+        >
           Tienda Oficial
         </a>
-        <a href="/contact" className="navbar-navlink">
+        <a
+          href="https://www.mgmgamers.store/contacto/"
+          target="_blank"
+          className="navbar-navlink"
+        >
           Contacto
         </a>
       </div>
 
       <div className="navbar-rigth">
-      <a href="/contact" className="navbar-navlink">
-          Contacto
+        <a
+          href="https://www.instagram.com/mgmgamers.store"
+          target="_blank"
+          className="navbar-navlink"
+        >
+          <img className="instagram_logo" src={instagram_logo}></img>
         </a>
         <button className="burger-menu-button" onClick={handleMenuToggle}>
-          <img src={burger}></img>
+        {!isOpen && (
+            <>
+              
+              <img  src={burger}></img>
+            </>
+          )}
+
+        
+          {isOpen && (
+            <>
+              
+              <img  src={burger_close}></img>
+            </>
+          )}
         </button>
         {isOpen && (
           <nav className="burger-menu">
             <div className="burger-container">
-              <a href="/" className="navbar-navlink">
-                TIENDA
+              <a
+                href="https://www.mgmgamers.store"
+                target="_blank"
+                className="navbar-navlink"
+              >
+                Tienda Oficial
               </a>
-              <a href="/about" className="navbar-navlink">
-                BLOG
+              <Link
+            activeClass="active"
+            to="img-container"
+            spy={true}
+            smooth={true}
+            offset={-60}
+            duration={500}
+            className="link-t"
+          >
+              <a
+                href="https://www.mgmgamers.store"
+                target="_blank"
+                className="navbar-navlink"
+              >
+                Personalizar
+              </a></Link>
+
+              <a
+                href="https://www.mgmgamers.store/contacto/"
+                target="_blank"
+                className="navbar-navlink"
+              >
+                Contacto
               </a>
-              <a href="/contact" className="navbar-navlink">
-                PREGUNTAS FRECUENTES
+              <a
+                href="https://sites.google.com/view/mgmgamersblog/inicio"
+                target="_blank"
+                className="navbar-navlink"
+              >
+                Blog
+              </a>
+              <a
+                href="https://www.instagram.com/mgmgamers.store"
+                target="_blank"
+                className="navbar-navlink"
+              >
+                <img className="instagram_logo_2" src={instagram_logo}></img>
               </a>
             </div>
           </nav>

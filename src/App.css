@@ -5,6 +5,11 @@
   display: flex;
 }
 
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
 .link-t {
   text-align: right;
 }

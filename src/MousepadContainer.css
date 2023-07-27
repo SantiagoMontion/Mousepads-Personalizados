@@ -521,6 +521,7 @@ ul {
   }
   .btn-big {
     width: 100%;
+    font-size: 12.5px;
   }
   .btn-big:hover {
     transform: scale(1.05);
@@ -573,6 +574,7 @@ ul {
   .title-faq {
     margin-top: 55px;
     margin-bottom: 0;
+    font-size: 24px;
   }
   ul {
     margin-top: -20px;
@@ -614,6 +616,7 @@ ul {
     margin-top: 25px;
     width: 99%;
   }
+  .title-mail{font-size: 26px;}
   .background-colors {
     position: absolute;
     left: 75vw;
@@ -653,8 +656,8 @@ ul {
     margin-left: -44px;
   }
   .left-pannel {
-    flex-direction: column;
-    margin-bottom: 20px;
+    flex-direction: row;
+    margin-bottom: 80px;
   }
   .center-pannel {
     width: 100%;

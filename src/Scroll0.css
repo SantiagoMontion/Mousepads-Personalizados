@@ -2,7 +2,6 @@
   display: flex;
 
   justify-content: space-between;
-  
 }
 
 .card {
@@ -12,18 +11,20 @@
   border-radius: 22px;
   position: relative; /* Para posicionar el contenido interno */
   color: #fff; /* Color del texto para que se vea en contraste con la imagen */
-  padding: 20px; /* Espacio alrededor del contenido */
+  padding: 15px; /* Espacio alrededor del contenido */
   display: flex; /* Usamos flex para que el botón ocupe todo el espacio */
   flex-direction: column; /* Los elementos dentro de la card se colocan en columna */
   justify-content: flex-end;
   margin-top: 16px;
-
 }
 
-.card-button:hover{transform: scale(1.03);}
-.card:hover{opacity: 0.94;}
+.card-button:hover {
+  transform: scale(1.03);
+}
+.card:hover {
+  opacity: 0.94;
+}
 #card-1 {
-  
   background: url("./Card-1.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,6 +54,7 @@
   padding: 25px;
   padding-bottom: 40px;
   overflow: hidden;
+  
 }
 
 .card-title {
@@ -61,10 +63,10 @@
   margin-bottom: 18px;
   text-align: left;
   font-family: Poppins;
-font-size: 26px;
-font-style: normal;
-font-weight: 800;
-line-height: 120%; 
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
 }
 
 .card-subtitle {
@@ -72,10 +74,10 @@ line-height: 120%;
   margin-bottom: 18px;
   text-align: left;
   font-family: Poppins;
-font-size: 16px;
-font-style: normal;
-font-weight: 800;
-line-height: normal; 
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
 }
 
 .card-button {
@@ -99,14 +101,24 @@ line-height: normal;
   transition: all 0.4s;
 }
 
-
 @media only screen and (max-width: 900px) {
   .card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .card {width: 100%;}
-  .card-title {font-size: 24px;}
-  .card-subtitle {font-size: 16px;}
+  .card-content {
+    
+    padding-left: 10px;
+  }
+  .card {
+    width: 100%;
+    padding-left: 0px;
+  }
+  .card-title {
+    font-size: 22px;
+  }
+  .card-subtitle {
+    font-size: 15px;
+  }
 }

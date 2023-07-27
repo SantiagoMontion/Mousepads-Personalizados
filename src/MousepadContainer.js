@@ -60,12 +60,18 @@ function MousepadContainer() {
         return "rellenar (Imágen completa)";
       case "cover":
         return "Cubrir (Recortando)";
+
+      case "contain":
+        return "Contenido";
+
       case "false":
         return "No";
       case "true":
         return "Si";
       case "":
         return "-";
+      case "PERSO":
+        return `${widthCm}cm x ${heightCm}cm`;
 
       default:
         return stringValue;
@@ -133,7 +139,6 @@ function MousepadContainer() {
         <img className="arrow" src={arrow}></img>
         <img className="arrow-2" src={arrow2}></img>
       </div>
-      
     );
   }
   const { height, width } = convertToPixels();
@@ -519,11 +524,10 @@ function MousepadContainer() {
             <div className="input-container-mail">
               <label>Ponele nombre a tu diseño.</label>
               <input
-              className="input-mail"
+                className="input-mail"
                 type="text"
                 value={nombreModelo}
                 onChange={handleNombreModeloChange}
-                
               />
             </div>
 
@@ -536,11 +540,12 @@ function MousepadContainer() {
                 className="input-mail-big"
                 value={comentario}
                 onChange={handleComentarioChange}
-                
               />
               <EmailLink
                 emailAddress={"personalizados@mgmgamers.store"}
-                subject={`Mousepad Personalizado Medida: ${selectedClient}`}
+                subject={`Mousepad Personalizado Medida: ${translateString(
+                  selectedClient
+                )}`}
                 body={`Buenas! Gracias por llegar hasta acá 🙌 
 Estás a un solo paso de tener el mousepad que te mereces 🤩
             
@@ -553,7 +558,7 @@ Este paso es obligatorio. Hay dos formas de hacerlo:
           
           
 Esta es la configuración que elegiste para tu modelo ⚙️🔩:
-Medida: ${selectedClient}
+Medida: ${translateString(selectedClient)}
 Nombre del Modelo: ${translateString(nombreModelo)}
 Comentario extra para el armado: ${translateString(comentario)}
 Alineación: ${translateString(Align)}
@@ -572,21 +577,25 @@ El plazo para responder puede ser de hasta 48 hs hábiles.`}
             </div>
           </form>
           <h3 className="subtitle-mail">
-            *Apenas nos envíes el formulario, <br></br>el diseñador se va a comunicar con
-            vos <br></br>via mail. La respuesta puede tener una <br></br>demora de hasta 48hs
-            hábiles.
+            *Apenas nos envíes el formulario, <br></br>el diseñador se va a
+            comunicar con vos <br></br>via mail. La respuesta puede tener una{" "}
+            <br></br>demora de hasta 48hs hábiles.
           </h3>
         </div>
         <div class="right-column-mail">
           <div class="faq">
             <h3 className="title-faq">Preguntas Frecuentes</h3>
             <ul>
-              <li className="faq-title">¿Personalizar el diseño tiene un costo extra?</li>
+              <li className="faq-title">
+                ¿Personalizar el diseño tiene un costo extra?
+              </li>
               <p className="faq-text">
                 Podes poner el diseño que vos quieras sin costo extra!<br></br>
                 El precio depende solo de la medida.
               </p>
-              <li className="faq-title">¿Puedo elegir un diseño de la web y cambiarle la medida?</li>
+              <li className="faq-title">
+                ¿Puedo elegir un diseño de la web y cambiarle la medida?
+              </li>
               <p className="faq-text">
                 Si! Tenes que poner el link del diseño que quieras de nuestra
                 web<br></br>y especificar la medida mediante este formulario.
@@ -599,12 +608,16 @@ El plazo para responder puede ser de hasta 48 hs hábiles.`}
                 personalmente con vos por mail para<br></br> poder hacer el
                 cambio que quieras.
               </p>
-              <li className="faq-title">¿Puedo pedir que me hagan un diseño?</li>
+              <li className="faq-title">
+                ¿Puedo pedir que me hagan un diseño?
+              </li>
               <p className="faq-text">
                 No hacemos diseños desde cero. Solo acomodamos la imagen que vos
                 buscaste a la medida que elegiste.
               </p>
-              <li className="faq-title">¿Cuáles son las medidas mínimas y máximas?</li>
+              <li className="faq-title">
+                ¿Cuáles son las medidas mínimas y máximas?
+              </li>
               <p className="faq-text">
                 Nuestra medida mínima es de 25cm x 25cm y la máxima es de 15Ocm
                 x 100cm.

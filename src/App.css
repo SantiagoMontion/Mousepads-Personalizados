@@ -130,6 +130,6 @@ a {
     line-height: 100%;
   }
   .scroll-back {
-    border-radius: 40px 0px 50px 50px;
+    border-radius: 0px 0px 50px 50px;
   }
 }

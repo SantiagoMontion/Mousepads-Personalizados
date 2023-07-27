@@ -71,6 +71,7 @@
 }
 .under-pannels {
   gap: 20px;
+  z-index: 99999999999999;
 }
 
 .no-img {

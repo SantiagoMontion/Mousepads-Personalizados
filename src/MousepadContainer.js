@@ -71,7 +71,7 @@ function MousepadContainer() {
       case "":
         return "-";
       case "PERSO":
-        return `${widthCm}cm x ${heightCm}cm`;
+        return `${widthCm}x${heightCm}`;
 
       default:
         return stringValue;
@@ -543,9 +543,9 @@ function MousepadContainer() {
               />
               <EmailLink
                 emailAddress={"mgmpads@gmail.com"}
-                subject={`Mousepad Personalizado Medida: ${translateString(
-                  selectedClient
-                )}`}
+                subject={`Mousepad Personalizado: ${translateString(
+                  nombreModelo
+                )} ${translateString(selectedClient)}`}
                 body={`Buenas! Gracias por llegar hasta acá 🙌 
 Estás a un solo paso de tener el mousepad que te mereces 🤩
             

@@ -542,7 +542,7 @@ function MousepadContainer() {
                 onChange={handleComentarioChange}
               />
               <EmailLink
-                emailAddress={"hola@mgmgamers.store"}
+                emailAddress={"mgmpads@gmail.com"}
                 subject={`Mousepad Personalizado Medida: ${translateString(
                   selectedClient
                 )}`}

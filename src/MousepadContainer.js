@@ -577,9 +577,21 @@ El plazo para responder puede ser de hasta 48 hs hábiles.`}
             </div>
           </form>
           <h3 className="subtitle-mail">
-            *Apenas nos envíes el formulario, <br></br>el diseñador se va a
-            comunicar con vos <br></br>via mail. La respuesta puede tener una{" "}
-            <br></br>demora de hasta 48hs hábiles.
+            *Apenas nos envíes el formulario, el diseñador se va a comunicar con
+            vos via mail. La respuesta puede tener una demora de hasta 48hs
+            hábiles.
+          </h3>
+          <h3 className="subtitle-mail">
+            *Si usas Google Chrome y no sucede nada al clickear el boton,
+            porfavor instala{" "}
+            <a
+              href="https://chrome.google.com/webstore/detail/mailto-for-gmail/dgkkmcknielgdhebimdnfahpipajcpjn?hl=en-GB"
+              target="_blank"
+              className="link-ref"
+            >
+              {" "}
+              <u>esta extensión en tu navegador.</u>
+            </a>
           </h3>
         </div>
         <div class="right-column-mail">

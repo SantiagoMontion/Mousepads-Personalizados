@@ -14,6 +14,10 @@
   flex-direction: column-reverse;
 }
 
+.link-ref {
+  color: #f29cb1;
+}
+
 .help {
   font-family: Poppins;
   font-size: 32px;

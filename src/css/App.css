@@ -55,6 +55,8 @@ body {
 .navbar-navlink {
   color: #ffffff;
   cursor: pointer;
+  position: relative;
+  z-index: 9999;
 }
 .navbar-navlink:hover {
   color: #f58220;

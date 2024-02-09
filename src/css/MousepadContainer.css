@@ -636,7 +636,8 @@ label {
   color: #d5d5d5;
 }
 .not-visible {
-  display: none;
+  display: block;
+  color: white;
 }
 .input-container-mail {
   justify-content: start;

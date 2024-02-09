@@ -13,8 +13,7 @@ function ContactForm(props) {
   const handleComentarioChange = (event) => {
     setComentario(event.target.value);
   };
-  const [widthCm, setWidthCm] = useState("");
-  const [heightCm, setHeightCm] = useState("");
+  
   const translateString = (inputString) => {
     if (inputString) {
       const stringValue = inputString.toString();
@@ -60,11 +59,11 @@ function ContactForm(props) {
           return "-";
 
         case "PERSO":
-          return `${widthCm}x${heightCm}`;
+          return `${props.width}x${props.height}`;
 
         default:
           return stringValue;
-        // Si no se encuentra una traducción, devuelve la entrada original.
+        
       }
     }
   };

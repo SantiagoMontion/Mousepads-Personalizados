@@ -805,6 +805,8 @@ function MousepadContainer() {
             handleChange={handleChange}
             Color={selectedColor}
             rotacion={rotacion}
+            width={widthCm}
+            height={heightCm}
           />
         </div>
         <div class="right-column-mail"></div>

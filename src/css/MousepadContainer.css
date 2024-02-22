@@ -665,7 +665,7 @@ label {
   background-color: #f58220;
   overflow: hidden;
   width: 100%;
-  border: none !important;
+  border: none;
   margin-top: 30px;
   color: #151515;
   font-size: 30px;
@@ -673,6 +673,17 @@ label {
   font-family: League Spartan, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
   letter-spacing: 0.05em;
+}
+
+.button-email.none {
+  background-color: transparent;
+  color: #868686;
+  border: 2px dashed #151515 !important;
+  border-radius: 10px;
+}
+
+.button-email.none:hover {
+  transform: none;
 }
 
 .button-email:hover {

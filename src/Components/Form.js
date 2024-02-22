@@ -13,7 +13,7 @@ function ContactForm(props) {
   const handleComentarioChange = (event) => {
     setComentario(event.target.value);
   };
-  
+
   const translateString = (inputString) => {
     if (inputString) {
       const stringValue = inputString.toString();
@@ -63,15 +63,20 @@ function ContactForm(props) {
 
         default:
           return stringValue;
-        
       }
     }
   };
 
-  const [state, handleSubmit] = useForm("mvoegrgy");
+  const [state, setState] = useForm("mvoegrgy");
+
   if (state.succeeded) {
     return <Popup></Popup>;
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Realiza las acciones de envío del formulario
+  };
   return (
     <form onSubmit={handleSubmit} enctype="multipart/form-data">
       <div className="form-container">
@@ -83,7 +88,6 @@ function ContactForm(props) {
             value={nombreModelo}
             onChange={handleNombreModeloChange}
             required="true"
-            placeholder="Es el nombre que va a figurar en nuestra web "
           />
           <label className="form-label" id="form-space" htmlFor="email">
             Tu mail 📨
@@ -93,7 +97,6 @@ function ContactForm(props) {
             type="email"
             name="email"
             className="input-mail"
-            placeholder="Por mail nos comunicamos con vos"
             required
           />
         </div>
@@ -106,16 +109,22 @@ function ContactForm(props) {
             className="input-mail-big"
             value={comentario}
             onChange={handleComentarioChange}
-            placeholder="Si le queres agregar algo al diseño, escribilo acá!"
           />
         </div>
         <button
-          className="button-email"
+          className={`button-email ${props.medida} `}
           type="submit"
-          disabled={state.submitting}
+          disabled={props.medida === "none"}
         >
           Enviar Diseño 🚀
         </button>
+        {props.medida === "none" ? (
+          <p className="scroll-left-recomendation-text">
+            No te olvides seleccionar una medida para tu mousepad
+          </p>
+        ) : (
+          <></>
+        )}
       </div>
 
       <div className="not-visible">

@@ -17,7 +17,7 @@ function ContactForm(props) {
   const translateString = (inputString) => {
     if (inputString) {
       const stringValue = inputString.toString();
-      console.log(stringValue);
+
       switch (stringValue) {
         case "left":
           return "izquierda";
@@ -67,16 +67,12 @@ function ContactForm(props) {
     }
   };
 
-  const [state, setState] = useForm("mvoegrgy");
+  const [state, handleSubmit] = useForm("mvoegrgy");
 
   if (state.succeeded) {
     return <Popup></Popup>;
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Realiza las acciones de envío del formulario
-  };
   return (
     <form onSubmit={handleSubmit} enctype="multipart/form-data">
       <div className="form-container">

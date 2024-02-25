@@ -138,7 +138,7 @@ function MousepadContainer() {
   const rotarImagen = () => {
     if (file) {
       const reader = new FileReader();
-      setRotacion(rotacion + 90);
+      setRotacion((rotacion + 90) % 360);
 
       reader.onload = (e) => {
         const image = new Image();

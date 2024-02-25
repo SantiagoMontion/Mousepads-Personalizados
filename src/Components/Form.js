@@ -107,6 +107,7 @@ function ContactForm(props) {
             onChange={handleComentarioChange}
           />
         </div>
+
         <button
           className={`button-email ${props.medida} `}
           type="submit"

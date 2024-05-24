@@ -37,7 +37,7 @@ function Navbar() {
           </Link>
 
           <a
-            href="https://www.mgmgamers.store"
+            href="https://tu-mousepad.mgmgamers.store/"
             target="_blank"
             className="navbar-navlink"
           >
@@ -98,7 +98,7 @@ function Navbar() {
                 </Link>
 
                 <a
-                  href="https://www.mgmgamers.store"
+                  href="https://tu-mousepad.mgmgamers.store/"
                   target="_blank"
                   className="navbar-navlink"
                 >

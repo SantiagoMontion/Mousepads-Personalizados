@@ -111,6 +111,8 @@ a {
   .instagram_logo_2 {
     display: flex;
     justify-content: end;
+   margin-top: -20px;
+    width: 40px;
   }
   .insta-container {
     display: flex;
@@ -152,7 +154,7 @@ a {
   .burger-container {
     display: flex;
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 12px;

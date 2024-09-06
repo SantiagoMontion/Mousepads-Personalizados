@@ -7,7 +7,7 @@ import tiktok from "../img/tiktok.svg";
 const Footer = () => {
   return (
     <div className="footer-container">
-      <img src={Logo}></img>
+      <img className="footer-logo-main" src={Logo}></img>
       <div className="footer-links">
         <a
           href="https://mgmgamers.store/mousepads/personalizados/"

@@ -1,5 +1,18 @@
-<svg width="369" height="81" viewBox="0 0 369 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="356" y="81" width="343" height="13" transform="rotate(-180 356 81)" fill="#F58220"/>
-<rect x="369" width="81" height="13" transform="rotate(90 369 0)" fill="#F58220"/>
-<rect x="13" width="81" height="13" transform="rotate(90 13 0)" fill="#F58220"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 369 81">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #edecea;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Capa_1">
+      <rect class="cls-1" x="13" y="68" width="343" height="13"/>
+      <rect class="cls-1" x="356" y="0" width="13" height="81"/>
+      <rect class="cls-1" y="0" width="13" height="81"/>
+    </g>
+  </g>
 </svg>

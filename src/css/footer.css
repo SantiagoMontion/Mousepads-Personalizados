@@ -2,19 +2,23 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #0f0f0f;
+  background-color: #edecea;
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
 }
-
+.footer-logo-main{
+  width: 120px;
+  
+}
+.footer-logo{width: 75px;}
 .footer-name {
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   font-family: "League Spartan";
-  color: #f58220;
+  color: #181818;
   text-align: center;
 }
 
@@ -46,7 +50,7 @@
   margin-top: 35px;
   font-family: "League Spartan";
   font-weight: 600;
-  color: #d5d5d5;
+  color: #181818;
   text-align: center;
   font-size: 14px;
   line-height: 10px;

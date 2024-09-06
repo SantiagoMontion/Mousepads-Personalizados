@@ -1,5 +1,24 @@
-<svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="27.5" cy="27.5" r="25.5" stroke="#F58220" stroke-width="4"/>
-<path d="M19.6475 36.3287L37.385 18.3908" stroke="#F58220" stroke-width="4" stroke-linecap="round"/>
-<path d="M36.6177 36.3872L19 18.3272" stroke="#F58220" stroke-width="4" stroke-linecap="round"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 55 55">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #edecea;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Capa_1">
+      <circle class="cls-1" cx="27.5" cy="27.5" r="25.5"/>
+      <path class="cls-2" d="M19.6,36.3l17.7-17.9"/>
+      <path class="cls-2" d="M36.6,36.4l-17.6-18.1"/>
+    </g>
+  </g>
 </svg>

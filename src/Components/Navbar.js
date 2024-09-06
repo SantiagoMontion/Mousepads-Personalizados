@@ -3,7 +3,7 @@ import burger from "../img/burger.svg";
 import instagram_logo from "../img/instagram_logo.svg";
 import { Link, animateScroll as scroll } from "react-scroll";
 import React, { useState } from "react";
-import burger_close from "../img/close.svg";
+import burger_close from "../img/burger_close.svg";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

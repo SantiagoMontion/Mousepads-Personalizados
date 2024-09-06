@@ -56,7 +56,7 @@ function Scroll2() {
             </li>
             <li className="scroll-left-recomendation-text">
               El editor solo acepta una imagen. Si quieres que te armemos un
-              collage, mándanos las imágenes al mail
+              collage, mándanos las imágenes al mail {" "}
               <a className="scroll-link" href="mailto:mgmpads@gmail.com">
                 mgmpads@gmail.com{" "}
               </a>

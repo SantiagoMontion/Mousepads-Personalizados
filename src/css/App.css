@@ -105,6 +105,21 @@ a {
   .mgm-logo {
     width: 101px;
   }
+
+  .navbar-container {
+    background-color: #edecea;
+    padding: 30px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+  
+    color: #181818 !important;
+    font-family: "League Spartan", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1px;
+  }
   .instagram_logo {
     display: none;
   }

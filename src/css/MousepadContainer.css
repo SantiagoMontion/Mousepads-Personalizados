@@ -7,6 +7,28 @@
   margin-bottom: -55px !important;
 }
 
+.precio {
+  color: #fff;
+  font-family: "Bebas Neue";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  font-size: 1.2rem; /* Ajusta el tamaño del texto */
+  font-weight: bold; /* Resalta el texto */
+  color: #ff5722; /* Cambia el color según prefieras */
+  background-color: rgba(255, 87, 34, 0.1); /* Fondo opcional */
+  padding: 5px 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center; /* Centrado del texto */
+  padding: 0;
+  margin: 0;
+}
+
 .up-lines {
   width: 100%;
   z-index: 0 !important;
@@ -284,14 +306,64 @@
   padding-top: 12px;
   padding-bottom: 12px;
 }
-
+.btn-big-2 {
+  border-radius: 8px;
+  background: #d5d5d5;
+  border: none;
+  color: #151515;
+  font-family: "League Spartan";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
 .btn-big:focus {
+  background: #f58220;
+}
+
+.btn-big-2:focus {
+  background: #f58220;
+}
+
+.btn-big-3:focus {
+  background: #f58220;
+}
+
+.btn-big-3 {
+  border-radius: 8px;
+  background: #d5d5d5;
+  border: none;
+  color: #151515;
+  font-family: "League Spartan";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  padding-left: 26px;
+  padding-right: 26px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.btn-big-2:hover {
   background: #f58220;
 }
 
 .pannel-btn-doble {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pannel-btn-doble-2 {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
@@ -1041,6 +1113,19 @@ ul {
 }
 
 @media only screen and (max-width: 700px) {
+  .price-div {
+    display: flex;
+    flex-direction: column; /* Asegura que la imagen y el precio estén apilados */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+  }
+
+  .precio {
+    font-size: 1rem; /* Ajuste de tamaño del texto */
+     /* Ajusta el margen superior para que se mantenga en su lugar */
+  }
   .phrase-container {
     font-size: 24px;
     text-align: center;
@@ -1120,14 +1205,25 @@ ul {
   }
   #scalable-image-l {
     transform: scale(0.67);
+    margin-bottom: -20px;
   }
   #scalable-image-xl {
     transform: scale(0.6);
+    margin-bottom: -60px;
   }
   #scalable-image-xxl {
-    transform: scale(0.56);
+    transform: scale(0.55);
+    margin-bottom: -70px;
   }
+
+  #scalable-image-xxxl {
+    transform: scale(0.42);
+    margin-bottom: -140px;
+    margin-top: -50px;
+  }
+  
   #scalable-image {
     transform: scale(0.9);
+    
   }
 }

@@ -140,6 +140,7 @@ function ContactForm(props) {
           className="input-mail-big"
           value={`
 Esta es la configuración:
+Tipo: ${props.mode}
 Medida: ${translateString(props.medida)}
 Nombre del Modelo: ${translateString(nombreModelo)}
 Comentario extra para el armado: ${translateString(comentario)}

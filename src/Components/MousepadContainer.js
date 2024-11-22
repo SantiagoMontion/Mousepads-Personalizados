@@ -37,6 +37,23 @@ function MousepadContainer() {
   const [div1Visible, setDiv1Visible] = useState(false);
   const [div2Visible, setDiv2Visible] = useState(false);
   const [div3Visible, setDiv3Visible] = useState(false);
+  const [mode, setMode] = useState("Clasic"); // default: "Clasic"
+  const precios = {
+    S: "8.500",
+    M: "16.000",
+    L: "18.000",
+    XL: "25.000",
+    XXL: "30.000",
+    XXXL: "65.000",
+  };
+
+  const preciospro = {
+    PRO: "22.000",
+    PROPLUS: "32.000",
+  };
+  const handleModeChange = (newMode) => {
+    setMode(newMode);
+  };
 
   const handleButtonClick = (divNumber) => {
     // Verificar si el div clickeado ya está abierto, en ese caso cerrarlo
@@ -114,7 +131,15 @@ function MousepadContainer() {
   };
 
   function handleSelectChange(string) {
-    setSelectedClient(string);
+    // Verificar si el valor es válido y no debe quedar como "x" o vacío
+    if (!string || string.trim() === "x") {
+      console.warn(
+        "Valor inválido para selectedClient, estableciendo un valor predeterminado."
+      );
+      setSelectedClient("none"); // O cualquier valor predeterminado adecuado
+    } else {
+      setSelectedClient(string);
+    }
   }
 
   function handleAlign(string) {
@@ -173,49 +198,246 @@ function MousepadContainer() {
   return (
     <div className="selector-size-container">
       <h2 className="selector-size-title">CREA TU MOUSEPAD PERFECTO</h2>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <button
+          onClick={() => handleModeChange("Clasic")}
+          className="btn-big-2"
+        >
+          Clasic
+        </button>
+        <button onClick={() => handleModeChange("Pro")} className="btn-big-2">
+          Pro
+        </button>
+      </div>
       <img src={upLines} className="up-lines" id="up-lines-pc"></img>
       <img src={upLinesmobile} className="up-lines" id="up-lines-mobile"></img>
-      <div className="selector_size">
-        <div className="big-pannel">
-          <div className="option-pannels">
-            <div className="left-pannel">
-              <div className="left-pannel-container-mobile">
-                <div>
-                  <h5 className="left-pannel-title" id="title-mini">
-                    Ajustes
-                  </h5>
-                  <a
-                    className="button-open"
-                    onClick={() => handleButtonClick(1)}
-                  >
-                    <img src={ajustes}></img>
-                  </a>
-                </div>
-                <div>
-                  <h5 className="left-pannel-title" id="title-mini">
-                    Medida
-                  </h5>
-                  <a
-                    className="button-open"
-                    onClick={() => handleButtonClick(2)}
-                  >
-                    <img src={medidas}></img>
-                  </a>
-                </div>
-                <div>
-                  <h5 className="left-pannel-title" id="title-mini">
-                    Alinear
-                  </h5>
-                  <a
-                    className="button-open"
-                    onClick={() => handleButtonClick(3)}
-                  >
-                    <img src={alinear}></img>
-                  </a>
-                </div>
+      {mode === "Clasic" ? (
+        <>
+          <div className="selector_size">
+            <div className="big-pannel">
+              <div className="option-pannels">
+                <div className="left-pannel">
+                  <div className="left-pannel-container-mobile">
+                    <div>
+                      <h5 className="left-pannel-title" id="title-mini">
+                        Ajustes
+                      </h5>
+                      <a
+                        className="button-open"
+                        onClick={() => handleButtonClick(1)}
+                      >
+                        <img src={ajustes}></img>
+                      </a>
+                    </div>
+                    <div>
+                      <h5 className="left-pannel-title" id="title-mini">
+                        Medida
+                      </h5>
+                      <a
+                        className="button-open"
+                        onClick={() => handleButtonClick(2)}
+                      >
+                        <img src={medidas}></img>
+                      </a>
+                    </div>
+                    <div>
+                      <h5 className="left-pannel-title" id="title-mini">
+                        Alinear
+                      </h5>
+                      <a
+                        className="button-open"
+                        onClick={() => handleButtonClick(3)}
+                      >
+                        <img src={alinear}></img>
+                      </a>
+                    </div>
 
-                <div className={`content ${div1Visible ? "active" : ""}`}>
-                  <div className="pannel-thin" id="left-pannel">
+                    <div className={`content ${div1Visible ? "active" : ""}`}>
+                      <div className="pannel-thin" id="left-pannel">
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">Rellenar</p>
+                          <Button
+                            img={rellenar}
+                            value="contain"
+                            onClickHandler={toggleImageMode}
+                          ></Button>
+                        </div>
+
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">CUBRIR</p>
+                          <Button
+                            img={ajustar}
+                            value="cover"
+                            onClickHandler={toggleImageMode}
+                          ></Button>
+                        </div>
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">Estirar</p>
+                          <Button
+                            img={estirar}
+                            value="fill"
+                            onClickHandler={toggleImageMode}
+                          ></Button>
+                        </div>
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">GIRAR</p>
+                          <Button
+                            img={girar}
+                            className="btn"
+                            onClickHandler={rotarImagen}
+                            value=""
+                          ></Button>
+                        </div>
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">Espejo</p>
+                          <Button
+                            img={icon_rotation}
+                            className="btn"
+                            onClickHandler={handleRotation}
+                            value=""
+                          ></Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`content ${div2Visible ? "active" : ""}`}>
+                      <div className="pannel-thin">
+                        <h4 className="pannel-mini-text">Estándares</h4>
+                        <div className="pannel-btn-doble">
+                          <button
+                            className="btn-big"
+                            onClick={() => handleSelectChange("S")}
+                          >
+                            S <br></br>(25x25CM)
+                          </button>
+                          <button
+                            className="btn-big"
+                            onClick={() => handleSelectChange("M")}
+                          >
+                            M <br></br>(82x32CM)
+                          </button>
+                          <button
+                            className="btn-big"
+                            onClick={() => handleSelectChange("L")}
+                          >
+                            L <br></br>(90x40CM)
+                          </button>
+                          <button
+                            className="btn-big"
+                            onClick={() => handleSelectChange("XL")}
+                          >
+                            XL <br></br>(100x60CM)
+                          </button>
+                          <button
+                            className="btn-big"
+                            onClick={() => handleSelectChange("XXL")}
+                          >
+                            XXL <br></br>(110x70CM)
+                          </button>
+                          <button
+                            className="btn-big"
+                            onClick={() => {
+                              handleSelectChange("XXXL");
+                            }}
+                          >
+                            XXXL <br></br>(150x100CM)
+                          </button>
+                        </div>
+                        <h4 className="pannel-mini-text">Personalizadas</h4>
+
+                        <div className="perso-options">
+                          <div className="input-perso-container">
+                            <input
+                              className="perso-input"
+                              type="number"
+                              value={widthCm}
+                              pattern="[0-9]*"
+                              onChange={handleWidthChange}
+                              placeholder="Largo (cm)"
+                            />
+                          </div>
+                          <h5 className="cross">X</h5>
+
+                          <div className="input-perso-container">
+                            <input
+                              className="perso-input"
+                              type="number"
+                              pattern="[0-9]*"
+                              value={heightCm}
+                              onChange={handleHeightChange}
+                              placeholder="Ancho (cm)"
+                            />
+                          </div>
+                          <button
+                            className="btn-big-apply"
+                            onClick={() => {
+                              handleSelectChange("PERSO");
+                            }}
+                          >
+                            Aplicar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`content ${div3Visible ? "active3" : ""}`}>
+                      <div className="pannel-thin" id="right-pannel">
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            disabled
+                            img={icon_left}
+                            className="btn"
+                            onClickHandler={handlejustify}
+                            value="left"
+                          ></Button>
+                        </div>
+
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_center}
+                            className="btn"
+                            onClickHandler={function (event) {
+                              handleAlign("center");
+                              handlejustify("center");
+                            }}
+                            value="center"
+                          ></Button>
+                        </div>
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_right}
+                            className="btn"
+                            onClickHandler={handlejustify}
+                            value="right"
+                          ></Button>
+                        </div>
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_up}
+                            className="btn"
+                            onClickHandler={handleAlign}
+                            value="top"
+                          ></Button>
+                        </div>
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_down}
+                            className="btn"
+                            onClickHandler={handleAlign}
+                            value="bottom"
+                          ></Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="left-pannel-container-1">
+                    <h5 className="left-pannel-title">Ajustes</h5>
                     <div className="button-adjust">
                       <p className="button-adjust-text">Rellenar</p>
                       <Button
@@ -260,88 +482,9 @@ function MousepadContainer() {
                       ></Button>
                     </div>
                   </div>
-                </div>
-                <div className={`content ${div2Visible ? "active" : ""}`}>
-                  <div className="pannel-thin">
-                    <h4 className="pannel-mini-text">Estándares</h4>
-                    <div className="pannel-btn-doble">
-                      <button
-                        className="btn-big"
-                        onClick={() => handleSelectChange("S")}
-                      >
-                        S <br></br>(25x25CM)
-                      </button>
-                      <button
-                        className="btn-big"
-                        onClick={() => handleSelectChange("M")}
-                      >
-                        M <br></br>(82x32CM)
-                      </button>
-                      <button
-                        className="btn-big"
-                        onClick={() => handleSelectChange("L")}
-                      >
-                        L <br></br>(90x40CM)
-                      </button>
-                      <button
-                        className="btn-big"
-                        onClick={() => handleSelectChange("XL")}
-                      >
-                        XL <br></br>(100x60CM)
-                      </button>
-                      <button
-                        className="btn-big"
-                        onClick={() => handleSelectChange("XXL")}
-                      >
-                        XXL <br></br>(110x70CM)
-                      </button>
-                      <button
-                        className="btn-big"
-                        onClick={() => {
-                          handleSelectChange("XXXL");
-                        }}
-                      >
-                        XXXL <br></br>(150x100CM)
-                      </button>
-                    </div>
-                    <h4 className="pannel-mini-text">Personalizadas</h4>
+                  <div className="left-pannel-container-1">
+                    <h5 className="left-pannel-title">Alinear</h5>
 
-                    <div className="perso-options">
-                      <div className="input-perso-container">
-                        <input
-                          className="perso-input"
-                          type="number"
-                          value={widthCm}
-                          pattern="[0-9]*"
-                          onChange={handleWidthChange}
-                          placeholder="Largo (cm)"
-                        />
-                      </div>
-                      <h5 className="cross">X</h5>
-
-                      <div className="input-perso-container">
-                        <input
-                          className="perso-input"
-                          type="number"
-                          pattern="[0-9]*"
-                          value={heightCm}
-                          onChange={handleHeightChange}
-                          placeholder="Ancho (cm)"
-                        />
-                      </div>
-                      <button
-                        className="btn-big-apply"
-                        onClick={() => {
-                          handleSelectChange("PERSO");
-                        }}
-                      >
-                        Aplicar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className={`content ${div3Visible ? "active3" : ""}`}>
-                  <div className="pannel-thin" id="right-pannel">
                     <div className="button-adjust" id="align-space">
                       <Button
                         disabled
@@ -390,393 +533,796 @@ function MousepadContainer() {
                   </div>
                 </div>
               </div>
-              <div className="left-pannel-container-1">
-                <h5 className="left-pannel-title">Ajustes</h5>
-                <div className="button-adjust">
-                  <p className="button-adjust-text">Rellenar</p>
-                  <Button
-                    img={rellenar}
-                    value="contain"
-                    onClickHandler={toggleImageMode}
-                  ></Button>
-                </div>
-
-                <div className="button-adjust">
-                  <p className="button-adjust-text">CUBRIR</p>
-                  <Button
-                    img={ajustar}
-                    value="cover"
-                    onClickHandler={toggleImageMode}
-                  ></Button>
-                </div>
-                <div className="button-adjust">
-                  <p className="button-adjust-text">Estirar</p>
-                  <Button
-                    img={estirar}
-                    value="fill"
-                    onClickHandler={toggleImageMode}
-                  ></Button>
-                </div>
-                <div className="button-adjust">
-                  <p className="button-adjust-text">GIRAR</p>
-                  <Button
-                    img={girar}
-                    className="btn"
-                    onClickHandler={rotarImagen}
-                    value=""
-                  ></Button>
-                </div>
-                <div className="button-adjust">
-                  <p className="button-adjust-text">Espejo</p>
-                  <Button
-                    img={icon_rotation}
-                    className="btn"
-                    onClickHandler={handleRotation}
-                    value=""
-                  ></Button>
+              <div className="center-pannel">
+                <div className="img-container">
+                  {selectedClient === "S" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className={`contenedor-imagen ${selectedColor}`}
+                            id="scalable-image"
+                            style={{ height: "145px", width: "145px" }}
+                          >
+                            <img
+                              className="complete-img"
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${precios.XL}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {(selectedClient === "M" || selectedClient === "none") && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            id="scalable-image-m"
+                            style={{ height: "177px", width: "455px" }}
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${precios.XL}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {selectedClient === "L" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            id="scalable-image-l"
+                            style={{ height: "222px", width: "500px" }}
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${precios.XL}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {selectedClient === "XL" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            id="scalable-image-xl"
+                            style={{ height: "333px", width: "555px" }}
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${precios.XL}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {selectedClient === "XXL" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            id="scalable-image-xxl"
+                            style={{ height: "389px", width: "611px" }}
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${precios.XL}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {selectedClient === "XXXL" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            id="scalable-image-xxxl"
+                            style={{
+                              height: "34.68em",
+                              width: "52.06em",
+                              
+                            }}
+                            
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${precios.XXXL}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {selectedClient === "PERSO" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            style={{
+                              height: `${height}px`,
+                              width: `${width}px`,
+                            }}
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Align} ${Justify} `,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <span className="precio">
+                            El precio se cotiza según la medida, una vez enviado
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
-              <div className="left-pannel-container-1">
-                <h5 className="left-pannel-title">Alinear</h5>
 
-                <div className="button-adjust" id="align-space">
-                  <Button
-                    disabled
-                    img={icon_left}
-                    className="btn"
-                    onClickHandler={handlejustify}
-                    value="left"
-                  ></Button>
+              {imageMode == "contain" && Bandera && (
+                <div className="background-colors">
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      value="black"
+                      checked={selectedColor === "black"}
+                      onChange={handleChangeColor}
+                    />
+                    <span className="radio-custom black-background"></span>
+                  </label>
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      value="white"
+                      checked={selectedColor === "white"}
+                      onChange={handleChangeColor}
+                    />
+                    <span className="radio-custom white-background"></span>
+                  </label>
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      value="ia"
+                      checked={selectedColor === `ia`}
+                      onChange={handleChangeColor}
+                    />
+
+                    <span className="radio-custom ia-background"></span>
+                    <div
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <img className="question" src={question}></img>
+
+                      {mostrarDiv && (
+                        <div className="ia-text">
+                          Se completa el diseño con IA (photoshop), el resultado
+                          se muestra por mail.
+                        </div>
+                      )}
+                    </div>
+                  </label>
                 </div>
+              )}
+            </div>
+            <div className="right-pannel">
+              <div className="only-size">
+                <h3 className="pannel-title">Medidas</h3>
+                <h4 className="pannel-mini-text">Estándares</h4>
+                <div className="pannel-btn-doble">
+                  <button
+                    className="btn-big"
+                    onClick={() => handleSelectChange("S")}
+                  >
+                    S <br></br>(25x25CM)
+                  </button>
 
-                <div className="button-adjust" id="align-space">
-                  <Button
-                    img={icon_center}
-                    className="btn"
-                    onClickHandler={function (event) {
-                      handleAlign("center");
-                      handlejustify("center");
+                  <button
+                    className="btn-big"
+                    onClick={() => handleSelectChange("M")}
+                  >
+                    M <br></br>(82x32CM)
+                  </button>
+                  <button
+                    className="btn-big"
+                    onClick={() => handleSelectChange("L")}
+                  >
+                    L <br></br>(90x40CM)
+                  </button>
+                  <button
+                    className="btn-big"
+                    onClick={() => handleSelectChange("XL")}
+                  >
+                    XL <br></br>(100x60CM)
+                  </button>
+                  <button
+                    className="btn-big"
+                    onClick={() => handleSelectChange("XXL")}
+                  >
+                    XXL <br></br>(110x70CM)
+                  </button>
+                  <button
+                    className="btn-big"
+                    onClick={() => {
+                      handleSelectChange("XXXL");
                     }}
-                    value="center"
-                  ></Button>
+                  >
+                    XXXL <br></br>(150x100CM)
+                  </button>
                 </div>
-                <div className="button-adjust" id="align-space">
-                  <Button
-                    img={icon_right}
-                    className="btn"
-                    onClickHandler={handlejustify}
-                    value="right"
-                  ></Button>
-                </div>
-                <div className="button-adjust" id="align-space">
-                  <Button
-                    img={icon_up}
-                    className="btn"
-                    onClickHandler={handleAlign}
-                    value="top"
-                  ></Button>
-                </div>
-                <div className="button-adjust" id="align-space">
-                  <Button
-                    img={icon_down}
-                    className="btn"
-                    onClickHandler={handleAlign}
-                    value="bottom"
-                  ></Button>
+                <h4 className="pannel-mini-text">Personalizadas</h4>
+
+                <div className="perso-options">
+                  <div className="input-perso-container">
+                    <input
+                      className="perso-input"
+                      type="number"
+                      value={widthCm}
+                      pattern="[0-9]*"
+                      onChange={handleWidthChange}
+                      placeholder="Largo (cm)"
+                    />
+                  </div>
+                  <h5 className="cross">X</h5>
+
+                  <div className="input-perso-container">
+                    <input
+                      className="perso-input"
+                      type="number"
+                      pattern="[0-9]*"
+                      value={heightCm}
+                      onChange={handleHeightChange}
+                      placeholder="Ancho (cm)"
+                    />
+                  </div>
+                  <button
+                    className="btn-big-apply"
+                    onClick={() => {
+                      handleSelectChange("PERSO");
+                    }}
+                  >
+                    Aplicar
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="center-pannel">
-            <div className="img-container">
-              {selectedClient === "S" && (
-                <>
-                  {Bandera === "true" && (
-                    <div
-                      className={`contenedor-imagen ${selectedColor}`}
-                      id="scalable-image"
-                      style={{ height: "138px", width: "138px" }}
-                    >
-                      <img
-                        className="complete-img"
-                        style={{
-                          objectPosition: `${Justify} ${Align}`,
-                          transform: isMirrored ? "scaleX(-1)" : "scaleX(1)",
-                          objectFit: imageMode,
-                          backgroundColor: `${selectedColor} `,
-                        }}
-                        src={URL.createObjectURL(file)}
-                      />
+        </>
+      ) : (
+        <>
+          <div className="selector_size">
+            <div className="big-pannel">
+              <div className="option-pannels">
+                <div className="left-pannel">
+                  <div className="left-pannel-container-mobile">
+                    <div>
+                      <h5 className="left-pannel-title" id="title-mini">
+                        Ajustes
+                      </h5>
+                      <a
+                        className="button-open"
+                        onClick={() => handleButtonClick(1)}
+                      >
+                        <img src={ajustes}></img>
+                      </a>
                     </div>
-                  )}
-                </>
-              )}
-              {(selectedClient === "M" || selectedClient === "none") && (
-                <>
-                  {Bandera === "true" && (
-                    <div
-                      className="contenedor-imagen"
-                      id="scalable-image-m"
-                      style={{ height: "177px", width: "455px" }}
-                    >
-                      <img
-                        className="complete-img"
-                        id={`${selectedColor}`}
-                        style={{
-                          objectPosition: `${Justify} ${Align}`,
-                          transform: isMirrored ? "scaleX(-1)" : "scaleX(1)",
-                          objectFit: imageMode,
-                          backgroundColor: `${selectedColor} `,
-                        }}
-                        src={URL.createObjectURL(file)}
-                      />
+                    <div>
+                      <h5 className="left-pannel-title" id="title-mini">
+                        Medida
+                      </h5>
+                      <a
+                        className="button-open"
+                        onClick={() => handleButtonClick(2)}
+                      >
+                        <img src={medidas}></img>
+                      </a>
                     </div>
-                  )}
-                </>
-              )}
-              {selectedClient === "L" && (
-                <>
-                  {Bandera === "true" && (
-                    <div
-                      className="contenedor-imagen"
-                      id="scalable-image-l"
-                      style={{ height: "222px", width: "500px" }}
-                    >
-                      <img
-                        className="complete-img"
-                        id={`${selectedColor}`}
-                        style={{
-                          objectPosition: `${Justify} ${Align}`,
-                          transform: isMirrored ? "scaleX(-1)" : "scaleX(1)",
-                          objectFit: imageMode,
-                          backgroundColor: `${selectedColor} `,
-                        }}
-                        src={URL.createObjectURL(file)}
-                      />
+                    <div>
+                      <h5 className="left-pannel-title" id="title-mini">
+                        Alinear
+                      </h5>
+                      <a
+                        className="button-open"
+                        onClick={() => handleButtonClick(3)}
+                      >
+                        <img src={alinear}></img>
+                      </a>
                     </div>
-                  )}
-                </>
-              )}
-              {selectedClient === "XL" && (
-                <>
-                  {Bandera === "true" && (
-                    <div
-                      className="contenedor-imagen"
-                      id="scalable-image-xl"
-                      style={{ height: "333px", width: "555px" }}
-                    >
-                      <img
-                        className="complete-img"
-                        id={`${selectedColor}`}
-                        style={{
-                          objectPosition: `${Justify} ${Align}`,
-                          transform: isMirrored ? "scaleX(-1)" : "scaleX(1)",
-                          objectFit: imageMode,
-                          backgroundColor: `${selectedColor} `,
-                        }}
-                        src={URL.createObjectURL(file)}
-                      />
-                    </div>
-                  )}
-                </>
-              )}
-              {selectedClient === "XXL" && (
-                <>
-                  {Bandera === "true" && (
-                    <div
-                      className="contenedor-imagen"
-                      id="scalable-image-xxPrimerol"
-                      style={{ height: "389px", width: "611px" }}
-                    >
-                      <img
-                        className="complete-img"
-                        id={`${selectedColor}`}
-                        style={{
-                          objectPosition: `${Justify} ${Align}`,
-                          transform: isMirrored ? "scaleX(-1)" : "scaleX(1)",
-                          objectFit: imageMode,
-                          backgroundColor: `${selectedColor} `,
-                        }}
-                        src={URL.createObjectURL(file)}
-                      />
-                    </div>
-                  )}
-                </>
-              )}
-              {selectedClient === "XXXL" && (
-                <>
-                  {Bandera === "true" && (
-                    <div
-                      className="contenedor-imagen"
-                      style={{ height: "34.68em", width: "52.06em" }}
-                    >
-                      <img
-                        className="complete-img"
-                        id={`${selectedColor}`}
-                        style={{
-                          objectPosition: `${Justify} ${Align}`,
-                          transform: isMirrored ? "scaleX(-1)" : "scaleX(1)",
-                          objectFit: imageMode,
-                          backgroundColor: `${selectedColor} `,
-                        }}
-                        src={URL.createObjectURL(file)}
-                      />
-                    </div>
-                  )}
-                </>
-              )}
-              {selectedClient === "PERSO" && (
-                <>
-                  {Bandera === "true" && (
-                    <div
-                      className="contenedor-imagen"
-                      style={{ height: `${height}px`, width: `${width}px` }}
-                    >
-                      <img
-                        className="complete-img"
-                        id={`${selectedColor}`}
-                        style={{
-                          objectPosition: `${Align} ${Justify} `,
-                          transform: isMirrored ? "scaleX(-1)" : "scaleX(1)",
-                          objectFit: imageMode,
-                          backgroundColor: `${selectedColor} `,
-                        }}
-                        src={URL.createObjectURL(file)}
-                      />
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
 
-          {imageMode == "contain" && Bandera && (
-            <div className="background-colors">
-              <label className="radio-label">
-                <input
-                  type="radio"
-                  value="black"
-                  checked={selectedColor === "black"}
-                  onChange={handleChangeColor}
-                />
-                <span className="radio-custom black-background"></span>
-              </label>
-              <label className="radio-label">
-                <input
-                  type="radio"
-                  value="white"
-                  checked={selectedColor === "white"}
-                  onChange={handleChangeColor}
-                />
-                <span className="radio-custom white-background"></span>
-              </label>
-              <label className="radio-label">
-                <input
-                  type="radio"
-                  value="ia"
-                  checked={selectedColor === `ia`}
-                  onChange={handleChangeColor}
-                />
+                    <div className={`content ${div1Visible ? "active" : ""}`}>
+                      <div className="pannel-thin" id="left-pannel">
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">Rellenar</p>
+                          <Button
+                            img={rellenar}
+                            value="contain"
+                            onClickHandler={toggleImageMode}
+                          ></Button>
+                        </div>
 
-                <span className="radio-custom ia-background"></span>
-                <div
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <img className="question" src={question}></img>
-
-                  {mostrarDiv && (
-                    <div className="ia-text">
-                      Se completa el diseño con IA (photoshop), el resultado se
-                      muestra por mail.
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">CUBRIR</p>
+                          <Button
+                            img={ajustar}
+                            value="cover"
+                            onClickHandler={toggleImageMode}
+                          ></Button>
+                        </div>
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">Estirar</p>
+                          <Button
+                            img={estirar}
+                            value="fill"
+                            onClickHandler={toggleImageMode}
+                          ></Button>
+                        </div>
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">GIRAR</p>
+                          <Button
+                            img={girar}
+                            className="btn"
+                            onClickHandler={rotarImagen}
+                            value=""
+                          ></Button>
+                        </div>
+                        <div className="button-adjust">
+                          <p className="button-adjust-text">Espejo</p>
+                          <Button
+                            img={icon_rotation}
+                            className="btn"
+                            onClickHandler={handleRotation}
+                            value=""
+                          ></Button>
+                        </div>
+                      </div>
                     </div>
+                    <div className={`content ${div2Visible ? "active" : ""}`}>
+                      <div className="pannel-thin">
+                        <h4 className="pannel-mini-text">Estándares</h4>
+                        <div className="pannel-btn-doble-2">
+                          <button
+                            className="btn-big-3"
+                            onClick={() => handleSelectChange("S")}
+                          >
+                            PRO <br></br>(50x40CM)
+                          </button>
+
+                          <button
+                            className="btn-big-3"
+                            onClick={() => handleSelectChange("L")}
+                          >
+                            PRO Plus <br></br>(90x40CM)
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`content ${div3Visible ? "active3" : ""}`}>
+                      <div className="pannel-thin" id="right-pannel">
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            disabled
+                            img={icon_left}
+                            className="btn"
+                            onClickHandler={handlejustify}
+                            value="left"
+                          ></Button>
+                        </div>
+
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_center}
+                            className="btn"
+                            onClickHandler={function (event) {
+                              handleAlign("center");
+                              handlejustify("center");
+                            }}
+                            value="center"
+                          ></Button>
+                        </div>
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_right}
+                            className="btn"
+                            onClickHandler={handlejustify}
+                            value="right"
+                          ></Button>
+                        </div>
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_up}
+                            className="btn"
+                            onClickHandler={handleAlign}
+                            value="top"
+                          ></Button>
+                        </div>
+                        <div className="button-adjust" id="align-space">
+                          <Button
+                            img={icon_down}
+                            className="btn"
+                            onClickHandler={handleAlign}
+                            value="bottom"
+                          ></Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="left-pannel-container-1">
+                    <h5 className="left-pannel-title">Ajustes</h5>
+                    <div className="button-adjust">
+                      <p className="button-adjust-text">Rellenar</p>
+                      <Button
+                        img={rellenar}
+                        value="contain"
+                        onClickHandler={toggleImageMode}
+                      ></Button>
+                    </div>
+
+                    <div className="button-adjust">
+                      <p className="button-adjust-text">CUBRIR</p>
+                      <Button
+                        img={ajustar}
+                        value="cover"
+                        onClickHandler={toggleImageMode}
+                      ></Button>
+                    </div>
+                    <div className="button-adjust">
+                      <p className="button-adjust-text">Estirar</p>
+                      <Button
+                        img={estirar}
+                        value="fill"
+                        onClickHandler={toggleImageMode}
+                      ></Button>
+                    </div>
+                    <div className="button-adjust">
+                      <p className="button-adjust-text">GIRAR</p>
+                      <Button
+                        img={girar}
+                        className="btn"
+                        onClickHandler={rotarImagen}
+                        value=""
+                      ></Button>
+                    </div>
+                    <div className="button-adjust">
+                      <p className="button-adjust-text">Espejo</p>
+                      <Button
+                        img={icon_rotation}
+                        className="btn"
+                        onClickHandler={handleRotation}
+                        value=""
+                      ></Button>
+                    </div>
+                  </div>
+                  <div className="left-pannel-container-1">
+                    <h5 className="left-pannel-title">Alinear</h5>
+
+                    <div className="button-adjust" id="align-space">
+                      <Button
+                        disabled
+                        img={icon_left}
+                        className="btn"
+                        onClickHandler={handlejustify}
+                        value="left"
+                      ></Button>
+                    </div>
+
+                    <div className="button-adjust" id="align-space">
+                      <Button
+                        img={icon_center}
+                        className="btn"
+                        onClickHandler={function (event) {
+                          handleAlign("center");
+                          handlejustify("center");
+                        }}
+                        value="center"
+                      ></Button>
+                    </div>
+                    <div className="button-adjust" id="align-space">
+                      <Button
+                        img={icon_right}
+                        className="btn"
+                        onClickHandler={handlejustify}
+                        value="right"
+                      ></Button>
+                    </div>
+                    <div className="button-adjust" id="align-space">
+                      <Button
+                        img={icon_up}
+                        className="btn"
+                        onClickHandler={handleAlign}
+                        value="top"
+                      ></Button>
+                    </div>
+                    <div className="button-adjust" id="align-space">
+                      <Button
+                        img={icon_down}
+                        className="btn"
+                        onClickHandler={handleAlign}
+                        value="bottom"
+                      ></Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="center-pannel">
+                <div className="img-container">
+                  {selectedClient === "S" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className={`contenedor-imagen ${selectedColor}`}
+                            id="scalable-image"
+                            style={{ height: "222px", width: "300px" }}
+                          >
+                            <img
+                              className="complete-img"
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${preciospro.PRO}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {selectedClient === "L" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            id="scalable-image-l"
+                            style={{ height: "222px", width: "500px" }}
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Justify} ${Align}`,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <div className="price-div">
+                            <span className="precio">
+                              Precio: ${preciospro.PROPLUS}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {selectedClient === "PERSO" && (
+                    <>
+                      {Bandera === "true" && (
+                        <div>
+                          <div
+                            className="contenedor-imagen"
+                            style={{
+                              height: `${height}px`,
+                              width: `${width}px`,
+                            }}
+                          >
+                            <img
+                              className="complete-img"
+                              id={`${selectedColor}`}
+                              style={{
+                                objectPosition: `${Align} ${Justify} `,
+                                transform: isMirrored
+                                  ? "scaleX(-1)"
+                                  : "scaleX(1)",
+                                objectFit: imageMode,
+                                backgroundColor: `${selectedColor} `,
+                              }}
+                              src={URL.createObjectURL(file)}
+                            />
+                          </div>
+                          <span className="precio">
+                            El precio se cotiza según la medida, una vez enviado
+                          </span>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
-              </label>
-            </div>
-          )}
-        </div>
-        <div className="right-pannel">
-          <div className="only-size">
-            <h3 className="pannel-title">Medidas</h3>
-            <h4 className="pannel-mini-text">Estándares</h4>
-            <div className="pannel-btn-doble">
-              <button
-                className="btn-big"
-                onClick={() => handleSelectChange("S")}
-              >
-                S <br></br>(25x25CM)
-              </button>
-              <button
-                className="btn-big"
-                onClick={() => handleSelectChange("M")}
-              >
-                M <br></br>(82x32CM)
-              </button>
-              <button
-                className="btn-big"
-                onClick={() => handleSelectChange("L")}
-              >
-                L <br></br>(90x40CM)
-              </button>
-              <button
-                className="btn-big"
-                onClick={() => handleSelectChange("XL")}
-              >
-                XL <br></br>(100x60CM)
-              </button>
-              <button
-                className="btn-big"
-                onClick={() => handleSelectChange("XXL")}
-              >
-                XXL <br></br>(110x70CM)
-              </button>
-              <button
-                className="btn-big"
-                onClick={() => {
-                  handleSelectChange("XXXL");
-                }}
-              >
-                XXXL <br></br>(150x100CM)
-              </button>
-            </div>
-            <h4 className="pannel-mini-text">Personalizadas</h4>
-
-            <div className="perso-options">
-              <div className="input-perso-container">
-                <input
-                  className="perso-input"
-                  type="number"
-                  value={widthCm}
-                  pattern="[0-9]*"
-                  onChange={handleWidthChange}
-                  placeholder="Largo (cm)"
-                />
               </div>
-              <h5 className="cross">X</h5>
 
-              <div className="input-perso-container">
-                <input
-                  className="perso-input"
-                  type="number"
-                  pattern="[0-9]*"
-                  value={heightCm}
-                  onChange={handleHeightChange}
-                  placeholder="Ancho (cm)"
-                />
+              {imageMode == "contain" && Bandera && (
+                <div className="background-colors">
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      value="black"
+                      checked={selectedColor === "black"}
+                      onChange={handleChangeColor}
+                    />
+                    <span className="radio-custom black-background"></span>
+                  </label>
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      value="white"
+                      checked={selectedColor === "white"}
+                      onChange={handleChangeColor}
+                    />
+                    <span className="radio-custom white-background"></span>
+                  </label>
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      value="ia"
+                      checked={selectedColor === `ia`}
+                      onChange={handleChangeColor}
+                    />
+
+                    <span className="radio-custom ia-background"></span>
+                    <div
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <img className="question" src={question}></img>
+
+                      {mostrarDiv && (
+                        <div className="ia-text">
+                          Se completa el diseño con IA (photoshop), el resultado
+                          se muestra por mail.
+                        </div>
+                      )}
+                    </div>
+                  </label>
+                </div>
+              )}
+            </div>
+            <div className="right-pannel">
+              <div className="only-size">
+                <h3 className="pannel-title">Medidas</h3>
+                <h4 className="pannel-mini-text">Estándares</h4>
+                <div className="pannel-btn-doble-2">
+                  <button
+                    className="btn-big-3"
+                    onClick={() => handleSelectChange("S")}
+                  >
+                    PRO <br></br>(50x40CM)
+                  </button>
+
+                  <button
+                    className="btn-big-3"
+                    onClick={() => handleSelectChange("L")}
+                  >
+                    PRO Plus <br></br>(90x40CM)
+                  </button>
+                </div>
               </div>
-              <button
-                className="btn-big-apply"
-                onClick={() => {
-                  handleSelectChange("PERSO");
-                }}
-              >
-                Aplicar
-              </button>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
+
       <img src={downLines} className="up-lines" id="down-lines-pc"></img>
       <img
         src={downLinesmobile}
@@ -807,6 +1353,7 @@ function MousepadContainer() {
             rotacion={rotacion}
             width={widthCm}
             height={heightCm}
+            mode={mode}
           />
         </div>
         <div class="right-column-mail"></div>

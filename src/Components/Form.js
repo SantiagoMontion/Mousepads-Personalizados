@@ -37,6 +37,9 @@ function ContactForm(props) {
 
         case "L":
           return "90x40";
+
+        case "PRO":
+          return "50x40";
         case "XL":
           return "100x60";
         case "XXL":

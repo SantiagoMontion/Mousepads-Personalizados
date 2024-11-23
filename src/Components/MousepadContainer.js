@@ -989,7 +989,7 @@ function MousepadContainer() {
                         <div className="pannel-btn-doble-2">
                           <button
                             className="btn-big-3"
-                            onClick={() => handleSelectChange("S")}
+                            onClick={() => handleSelectChange("PRO")}
                           >
                             PRO <br></br>(50x40CM)
                           </button>

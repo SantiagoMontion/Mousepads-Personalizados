@@ -23,7 +23,7 @@ import upLinesmobile from "../img/upLines-mobile.svg";
 import downLinesmobile from "../img/downLines-mobile.svg";
 
 function MousepadContainer() {
-  const [selectedClient, setSelectedClient] = useState("none"); //default value
+  const [selectedClient, setSelectedClient] = useState(""); //default value
   const [Bandera, setBandera] = useState("");
   const [file, setFile] = useState();
   const [Align, setAlign] = useState("center");
@@ -134,9 +134,9 @@ function MousepadContainer() {
     // Verificar si el valor es válido y no debe quedar como "x" o vacío
     if (!string || string.trim() === "x") {
       console.warn(
-        "Valor inválido para selectedClient, estableciendo un valor predeterminado."
+        "Valor inválido para la medida, estableciendo un valor predeterminado."
       );
-      setSelectedClient("none"); // O cualquier valor predeterminado adecuado
+      setSelectedClient(""); // O cualquier valor predeterminado adecuado
     } else {
       setSelectedClient(string);
     }
@@ -558,9 +558,7 @@ function MousepadContainer() {
                             />
                           </div>
                           <div className="price-div">
-                            <span className="precio">
-                              Precio: ${precios.XL}
-                            </span>
+                            <span className="precio">Precio: ${precios.S}</span>
                           </div>
                         </div>
                       )}
@@ -590,9 +588,7 @@ function MousepadContainer() {
                             />
                           </div>
                           <div className="price-div">
-                            <span className="precio">
-                              Precio: ${precios.XL}
-                            </span>
+                            <span className="precio">Precio: ${precios.M}</span>
                           </div>
                         </div>
                       )}
@@ -622,9 +618,7 @@ function MousepadContainer() {
                             />
                           </div>
                           <div className="price-div">
-                            <span className="precio">
-                              Precio: ${precios.XL}
-                            </span>
+                            <span className="precio">Precio: ${precios.L}</span>
                           </div>
                         </div>
                       )}
@@ -687,7 +681,7 @@ function MousepadContainer() {
                           </div>
                           <div className="price-div">
                             <span className="precio">
-                              Precio: ${precios.XL}
+                              Precio: ${precios.XXL}
                             </span>
                           </div>
                         </div>
@@ -704,9 +698,7 @@ function MousepadContainer() {
                             style={{
                               height: "34.68em",
                               width: "52.06em",
-                              
                             }}
-                            
                           >
                             <img
                               className="complete-img"

@@ -39,17 +39,17 @@ function MousepadContainer() {
   const [div3Visible, setDiv3Visible] = useState(false);
   const [mode, setMode] = useState("Clasic"); // default: "Clasic"
   const precios = {
-    S: "8.500",
-    M: "16.000",
-    L: "18.000",
-    XL: "25.000",
-    XXL: "30.000",
-    XXXL: "65.000",
+    S: "9.500",
+    M: "17.000",
+    L: "19.000",
+    XL: "26.000",
+    XXL: "31.000",
+    XXXL: "66.000",
   };
 
   const preciospro = {
-    PRO: "22.000",
-    PROPLUS: "32.000",
+    PRO: "25.000",
+    PROPLUS: "35.000",
   };
   const handleModeChange = (newMode) => {
     setMode(newMode);

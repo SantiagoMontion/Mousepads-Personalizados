@@ -1,0 +1,114 @@
+/* Navbar.css */
+
+/* Contenedor principal con fondo transparente */
+.navbar {
+    width: 100%;
+    background-color: #181818 !important;
+    position: relative;
+    z-index: 1000;
+    
+  }
+  
+  /* Distribución interna */
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #181818 !important;
+    margin-left: 70px;
+    margin-right: 70px;
+  }
+  
+  /* Logo: ajusta según lo necesites */
+  .navbar-logo img {
+    width: 120px;
+  }
+  
+  /* Lista de enlaces en escritorio */
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .navbar-links li {
+    margin: 0;
+  }
+  
+  /* Estilo de los links: color base y efecto hover */
+  .navbar-links a {
+    color: #ECEDEA;
+    text-decoration: none;
+    font-family: "Poppins";
+    font-weight: medium;
+    transition: color 0.3s ease;
+    font-size: 18px;
+
+  }
+  
+  .navbar-links a:hover {
+    color: #cccccc; /* Efecto hover: puedes ajustar el color */
+  }
+  
+  /* Estilos para el botón burger */
+  .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .burger .line {
+    height: 3px;
+    background: #ECEDEA;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Transiciones para transformar el burger en "X" */
+  .burger .line1.open {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .burger .line2.open {
+    opacity: 0;
+  }
+  
+  .burger .line3.open {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Estilos responsive para pantallas menores o iguales a 768px */
+  @media (max-width: 768px) {
+    /* Mostrar el botón burger en mobile */
+    .burger {
+      display: flex;
+    }
+  
+    /* Posicionar y ocultar los links por defecto */
+    .navbar-links {
+      position: absolute;
+      top: 60px; /* Ajusta este valor según la altura de tu navbar */
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente para realzar los links en mobile */
+      flex-direction: column;
+      align-items: center;
+      display: none;
+      padding: 10px 0;
+    }
+  
+    /* Activar la visualización del menú al hacer clic en el burger */
+    .navbar-links.active {
+      display: flex;
+    }
+  
+    .navbar-links li {
+      margin: 10px 0;
+    }
+  }
+  

@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.product-selector {
+  background-color: #181818;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: start;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-bottom: 60px;
+}
+
+.product-title {
+  font-family: "Poppins";
+  font-size: 60px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.product-subtitle {
+  font-family: "Poppins";
+  font-size: 20px;font-weight: 400;
+  margin-bottom: 5px;
+  margin-top: -25px;
+}
+
+.product-text {
+
+  margin-bottom: 40px;
+  font-family: "Poppins";
+  font-size: 16px;font-weight: 400;
+
+}
+
+.top-right-label {
+  position: absolute;
+  top: 30px; /* Ajusta según sea necesario */
+  right: 30px; /* Ajusta según sea necesario */
+  background-color: #181818; /* Color de fondo */
+  color: #ECEDEA; /* Color de texto */
+  padding: 6px 10px; /* Espaciado interno */
+  border-radius: 6px; /* Bordes redondeados */
+  font-size: 12px; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  z-index: 10; /* Asegura que se muestre por encima */
+  font-family: "Poppins";
+  font-size: 13px;
+  font-weight: 500;
+  width: 105px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.create-button {
+  background-color: #ECEDEA;
+  color: #181818;
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: background-color 0.3s ease;
+  font-family: "Poppins";
+  font-size: 20px;font-weight: 600;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.create-button:hover {
+  background-color: #313131;
+  color: #ECEDEA;
+}
+
+
+.choice-heading {
+  font-size: 32px;
+  margin: 30px 0 20px;
+  font-family: "Poppins";
+  font-size: 55px;font-weight: 900;
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+.product-cards {
+  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.product-card {
+  position: relative;
+  background-color: #313131;
+  border-radius: 29px;
+  padding: 30px;
+  text-align: left;
+  border: 1px solid #ECEDEA;
+}
+
+.card-title {
+  font-size: 22px;
+  margin-top: 0;
+  font-family: "Poppins";
+  font-size: 24px;font-weight: 800;
+  color: #ECEDEA;
+}
+
+.card-tag {
+  font-size: 16px;
+  
+  color: #ECEDEA;
+  margin-top: -25px;
+  font-family: "Poppins";
+  font-size: 20px;font-weight: 500;
+}
+
+.card-description {
+  color: #ECEDEA;
+  font-family: "Poppins";
+  font-size: 22px;font-weight: 500;
+  margin: 10px 0;
+}
+
+.card-features {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  gap:50px;
+  margin-top: 20px;
+}
+
+.card-features li {
+   /* Quita el marcador por defecto */
+  position: relative;
+  padding-left: 30px; /* Deja espacio para la imagen */
+  margin-bottom: 18px;
+  color: #ECEDEA;
+  font-family: "Poppins";
+  font-size: 20px;font-weight: 400;
+}
+
+.card-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url('../img/check.svg'); /* Cambia esta URL */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20px;  /* Ajusta según el tamaño que necesites */
+  height: 20px;
+}
+.card-measures {
+  list-style-type: disc !important;
+  list-style-position: outside;
+  margin-left: 1.5em;  /* Espacio para que se vea el marcador */
+}
+
+/* Asegúrate de que los li dentro de .card-measures no tengan el estilo del pseudo-elemento */
+.card-features .card-measures li {
+  position: static;
+  padding-left: 0;
+}
+
+.card-features .card-measures li::before {
+  content: none !important;
+}
+
+.select-button {
+  color: #181818;
+  font-family: "Poppins";
+  font-size: 20px;font-weight: 600;
+  color: #000000;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ECEDEA;
+  cursor: pointer;
+  margin-top: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 182px;
+
+}
+
+/* ============================
+   Estilos para dispositivos móviles
+   ============================ */
+@media (max-width: 768px) {
+  .product-selector {
+    padding: 20px 10px 20px 20px;
+  }
+  
+  .product-title {
+    font-size: 32px;
+  }
+  
+  .product-subtitle {
+    font-size: 20px;
+  }
+  
+  .product-text {
+    font-size: 16px;
+  }
+  
+  .create-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .choice-heading {
+    font-size: 24px;
+    margin: 20px 0 15px;
+  }
+  
+  .product-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-card {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto 20px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+  
+  .card-tag,
+  .card-description,
+  .card-features li {
+    font-size: 14px;
+  }
+  
+  .select-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

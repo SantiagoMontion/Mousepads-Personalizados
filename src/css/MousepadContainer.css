@@ -1,0 +1,1488 @@
+@import url("https://fo-ts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Spartan:wght@100..900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.selector_size {
+  padding: 0;
+  margin: 0px;
+  width: 7%;
+  display: flex;
+  justify-content: center;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.contenedor-imagen {
+  position: relative; /* Necesario para posicionar el pseudo-elemento ::after */
+}
+
+.contenedor-imagen::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1.5px dashed #ff5722;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.contenedor-imagen.circular::after {
+  border-radius: 50%;
+}
+
+.Show-price{background-color: #414040; width: 340px; height: 70px; display: flex; justify-content: center;
+align-items: center;
+font-family: "Poppins";
+font-size: 25px;
+font-weight: 600;
+color: #ff5722;
+}
+#perso{gap:25px;background-color: #222222 !important;padding-top: 40px !important;padding-bottom: 40px !important;padding-left: 110px !important;padding-right: 110px !important; }
+
+.mousepad-container{padding: 70px;background-color: #181818;padding-top: 60px;}
+
+.selector-size-container {
+  background-color: #313131!important;
+  border-radius: 20px 20px 20px 20px;
+  padding: 0px;
+  gap: 40px;
+  display: grid;
+}
+
+.mode-logo img{width: 71px; padding: 15px;
+  border-bottom: 1px solid #181818;
+  border-right: 1px solid #181818;}
+.selector-size-title {
+  color: #fff;
+  font-family: "Bebas Neue";
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+  margin-bottom: 70px;
+}
+
+.mode-buttons{display: flex;
+  height: 48px;
+  align-items: center;
+  background-color: #313131;
+  padding-left: 10px;
+  justify-content: start;
+  
+}
+
+#inp{width: 260px;}
+
+#mode{justify-content: center;
+  border-radius: 20px 20px 0px 0px;
+width: 600px;}
+
+.calculator-container{display: grid;
+align-items: center;justify-content: center;
+width: 500px;
+  margin: 0 auto;
+grid-template-columns: 1fr;
+
+}
+
+.btn-mode{background-color: transparent;
+  border: 0;
+  padding: 12px 40px;
+  color: #ECEDEA;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-left: 1px solid #181818;
+  border-right: 1px solid #181818;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  
+}
+
+
+.btn-mode:hover {
+  background-color: #ECEDEA;
+  color: #000;
+}
+
+.btn-mode.active {
+  background-color: #ECEDEA;
+  color: #000;
+}
+
+
+.component-container{display: flex;width: 100%; margin-top: -40px;}
+
+.selector_size-class{width: 100%;display: flex;}
+
+
+
+.price-section {
+  position: absolute;
+  /* Si quieres que esté, por ejemplo, en la parte inferior, alineado con el borde interno (40px del fondo) */
+ top: -40px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  /* Opcionalmente, si necesitas centrar el contenido o definir un ancho máximo */
+  text-align: center;
+  width: 100%;
+  font-family: "Poppins";
+  font-weight: 600;
+  color:#F58220;
+  font-size: 20px;
+}
+
+
+.price-tooltip {
+  position: absolute;
+  bottom: -80%; /* Ubica el tooltip justo encima del div */
+  left: 40%;
+  
+  transform: translateX(-50%);
+  background-color: #181818e6; /* Color de fondo del tooltip */
+  color: #fff; /* Color del texto */
+  padding: 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;             /* Oculto por defecto */
+  pointer-events: none;   /* Para evitar interferir con el hover */
+  transition: opacity 0.3s ease;
+  z-index: 10;            /* Asegura que se muestre sobre otros elementos */
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 600;
+  text-align: start;
+}
+
+.price-section:hover .price-tooltip {
+  opacity: 1; /* Se hace visible cuando se hace hover en price-section */
+}
+
+.btn-container:hover .price-tooltip-btn {
+  opacity: 1;
+}
+.btn-container {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px; /* Espacio opcional entre botones */
+}
+.price-tooltip-btn {
+  position: absolute;
+  bottom: -80%; /* Ubica el tooltip justo encima del div */
+  left: 100%;
+  
+  transform: translateX(-50%);
+  background-color: #181818e6; /* Color de fondo del tooltip */
+  color: #fff; /* Color del texto */
+  padding: 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;             /* Oculto por defecto */
+  pointer-events: none;   /* Para evitar interferir con el hover */
+  transition: opacity 0.3s ease;
+  z-index: 10;            /* Asegura que se muestre sobre otros elementos */
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 600;
+  text-align: start;
+}
+
+.btn-container:hover .price-tooltip-btn {
+  opacity: 1;
+}
+
+
+.p-calcu{text-align: center;margin-top: 25;color:#ECEDEA !important}
+
+
+.alfombra-text{font-size: 11px !important;margin: 0;padding: 0;margin-top: -28px; text-align: center;}
+
+
+
+.circular-control {
+  margin-top: 0px;
+  text-align: center;
+}
+
+.btn-circular {
+  background-color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.btn-circular:hover {
+  background-color: #eee;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#form-space {
+  margin-top: 30px;
+}
+
+.contenedor-imagen {
+  overflow: hidden;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  max-width: 100%;
+}
+
+.link-ref {
+  color: #f29cb1;
+}
+
+.help {
+  font-family: "Poppins";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  width: 100%;
+  margin-top: 160px;
+  margin-bottom: 0;
+}
+
+.warning {
+  font-family: "Poppins";
+  font-size: 11px;
+  text-align: start !important;
+  color: #F58220;
+}
+
+.arrow {
+  margin-top: -70px;
+  transform: scale(0.4) rotate(6deg);
+  width: 100%;
+}
+
+.arrow-rotate {
+  margin-top: 30px;
+  transform: rotate(335deg);
+}
+
+.arrow-2 {
+  display: none;
+}
+
+.complete-img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.alert-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.left-pannel {
+  /* Se usa un único padding-left, en este caso 5px (o ajusta según prefieras) */
+  align-items: start;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: transparent;
+}
+
+.left-pannel-title {
+  color: #d5d5d5;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0;
+  letter-spacing: 0.75px;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 40px;
+}
+
+.contain-div{
+  background-color: #1E1E1E;
+
+  position: absolute;
+  top:21%;
+  right:23%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 10px;
+  
+ 
+}
+
+.background-colors-container{display: flex;flex-direction: column;justify-content: center;align-items: center;}
+
+.toggle-background-btn{
+  background-color: transparent;
+  border:0;  
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  padding-bottom: 15px;
+  border-radius:   8px ;
+  
+}
+.toggle-background-btn img{
+  width: 30px;
+  
+}
+
+.toggle-background-btn.active {
+  background-color: #F58220;  /* Cambia a tu color deseado en estado activo */
+}
+
+
+.background-colors {
+ 
+  top:27.5%;
+  right:23.26%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius:  8px;
+  gap:10px;
+}
+
+
+
+.radio-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  
+}
+
+.radio-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px; /* Espacio entre los elementos internos: círculo, texto e imagen */
+  background-color: #313131;  /* Color de fondo uniforme para cada opción */
+  padding: 10px;  
+  width: 48px;
+  height: 48px;      /* Espaciado interno */
+  border-radius: 8px;
+}
+
+.radio-custom {
+  /* Aquí van las reglas propias del radio personalizado; 
+     por ejemplo, tamaño, borde, etc. */
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.black-background {
+  background-color: black;
+}
+
+.white-background {
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.ia-background {
+  background-color: #ccc; /* o el color que corresponda */
+}
+
+.radio-text {
+  font-size: 14px;
+  font-family: "Poppins";
+  font-size: 11px;
+  font-weight: 400;
+  color: white;
+}
+
+.radio-img {
+  width: 18px;  /* Ajusta el tamaño de la imagen */
+  
+  object-fit: cover;
+}
+
+.ia-info-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #007bff; /* Color del botón informativo */
+  padding: 0;
+  margin-left: 5px;
+}
+
+
+
+
+@import url("https://fo-ts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Spartan:wght@100..900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+
+
+/* --- Spinner --- */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+.selector-size-title {
+  color: #fff;
+  font-family: "Bebas Neue";
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+  margin-bottom: 70px;
+}
+
+#form-space {
+  margin-top: 30px;
+}
+
+/* --- Contenedor de imagen --- */
+.contenedor-imagen {
+  overflow: hidden;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  max-width: 100%;
+}
+
+.link-ref {
+  color: #f29cb1;
+}
+
+.help {
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  width: 100%;
+  margin-top: 160px;
+  margin-bottom: 0;
+}
+
+.warning {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.arrow {
+  margin-top: -70px;
+  transform: scale(0.4) rotate(6deg);
+  width: 100%;
+}
+
+.arrow-rotate {
+  margin-top: 30px;
+  transform: rotate(335deg);
+}
+
+.arrow-2 {
+  display: none;
+}
+
+.complete-img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.alert-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+
+
+/* --- Botones y Ajustes --- */
+.button-adjust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-adjust-text {
+  color: #d5d5d5;
+  font-family: "Bebas Neue";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+#align-space {
+  margin-top: 10px;
+  z-index: 999 !important;
+}
+#align-space:active {
+  transform: scale(1.1);
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
+
+.left-pannel-container-1 {
+  gap: 20px;
+  background-color: #313131;
+  border-radius: 20px;
+ 
+
+
+}
+
+.under-pannels {
+  gap: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: end;
+  padding-top: 30px;
+}
+
+.no-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btn {
+  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-pannel {
+  background: #313131 !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  color: white;
+  margin-left: 10px;
+  width: 22%;
+  justify-content: center;
+  padding: 40px;
+  padding-top: 0px;
+  margin-top: -20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  border-radius: 20px;
+}
+
+.pannel-mini-text {
+  color: #d5d5d5;
+  font-family: "Bebas Neue";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.75px;
+}
+
+.option-pannels {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  width: 100%;
+}
+
+
+
+
+
+.center-pannel {
+  width: 100% ;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #222222;
+  align-items: center;
+}
+
+.img-container {
+  height: 555px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pannel-title {
+  color: #d5d5d5;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-top: 0px;
+}
+#p{margin-top: 15px;}
+
+#p2{margin-top: 20px;}
+
+.sep{
+  height: 1.4px;
+  background-color: #181818;
+  width: calc(100% + 70px); /* Aumenta 40px a cada lado */
+  margin-left: -28px;
+  margin-top: 20px;
+}
+
+.btn-big {
+  border-radius: 8px;
+  background: #414040;
+  border: none;
+  color: #ECEDEA;
+  font-family: "Poppins";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 25px;
+padding-top: 12px;
+padding-bottom: 12px;}
+
+.btn-big-2 {
+  border-radius: 8px;
+  background: #d5d5d5;
+  border: none;
+  color: #151515;
+  font-family: "League Spartan";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  padding: 18px 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.selector-size-title {
+  color: #fff;
+  font-family: "Bebas Neue";
+  font-size: 60px;
+  letter-spacing: 3px;
+  margin-bottom: 70px;
+}
+
+#form-space {
+  margin-top: 30px;
+}
+
+/* ------------------ Spinner ------------------ */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ------------------ Contenido ------------------ */
+.contenedor-imagen {
+  overflow: hidden;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  max-width: 100%;
+}
+
+.complete-img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+/* ------------------ Tipografía y Textos ------------------ */
+.precio {
+  font-family: "Bebas Neue";
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff5722;
+  background-color: rgba(255, 87, 34, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.link-ref {
+  color: #f29cb1;
+}
+
+.help {
+  font-family: Poppins;
+  font-size: 32px;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 160px;
+  margin-bottom: 0;
+}
+
+.warning {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.arrow {
+  margin-top: -70px;
+  transform: scale(0.4) rotate(6deg);
+  width: 100%;
+}
+
+.arrow-rotate {
+  margin-top: 30px;
+  transform: rotate(335deg);
+}
+
+.arrow-2 {
+  display: none;
+}
+
+.alert-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+
+/* ------------------ Botones y Ajustes ------------------ */
+.btn,
+.btn-big-3,
+.btn-big-2,
+.btn-big-apply {
+  border-radius: 8px;
+  border: none;
+}
+
+.btn {
+  background: transparent;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
+
+.btn-big-3 {
+  background: #d5d5d5;
+  color: #151515;
+  font-family: "League Spartan";
+  font-size: 15px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  padding: 12px 26px; /* shorthand for padding-top/bottom:12px; left/right:26px */
+}
+
+.btn-big-3:focus {
+  background: #f58220;
+}
+
+.btn-big-2:hover {
+  background: #f58220;
+}
+
+.btn-big-2.active {
+  background-color: #f58220 !important;
+}
+
+.btn-big.active {
+  background-color: #ECEDEA !important;
+  color: #181818;
+}
+
+.btn-big-apply.active{background-color: #ECEDEA !important;color: #181818;}
+
+.btn-big-apply {
+  color: #d9d9d9;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.65px;
+  background: #151515;
+  width: 100%;
+  padding: 12px 0;
+}
+
+.btn-big-2 {
+  border-radius: 8px;
+  background: #d5d5d5;
+  color: #151515;
+  font-family: "League Spartan";
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+  padding: 18px 40px;
+}
+
+
+.cta-container {
+  background-color: transparent; /* Fondo oscuro */
+  padding: 0px;
+  text-align: center;
+  border-radius: 8px;
+display: flex;
+flex-wrap: nowrap;
+flex-direction: column;
+  width: 100%;
+  color: #fff; /* Texto en blanco */
+  
+}
+
+.cta-button {
+  background-color: #414040; /* Color de llamada a la acción */
+  border: none;
+  padding: 12px 30px;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "Poppins";
+  font-weight: 500;
+  letter-spacing: 1.95px;
+}
+
+.cta-button:hover {
+  background-color: #F58220;
+}
+
+.cta-text {
+  font-size: 11px;
+  margin-top: 15px;
+  font-family: "Poppins";
+  font-weight: 300;
+  letter-spacing: 1.95px;
+  text-align: start;
+}
+
+.cta-text-info{font-size: 11px;
+  margin-top: 0px;
+  font-family: "Poppins";
+  font-weight: 300;
+  letter-spacing: 1.95px;
+  text-align: start;}
+
+.cta-title{
+  font-size: 14px;
+  margin-top: 15px;
+  font-family: "Poppins";
+  font-weight: 500;
+  letter-spacing: 1.95px;
+  text-align: center;
+}
+
+
+
+/* ------------------ Botones de Tamaño ------------------ */
+.pannel-btn-doble {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+}
+
+.button-cont{display: flex;flex-wrap: nowrap;
+justify-content: space-around;align-items: center;
+width: 100%;
+}
+
+.btn-text{font-family: "Poppins";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.75px;}
+
+.pannel-btn-doble-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* ------------------ Personalización (Inputs y opciones) ------------------ */
+.perso-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 !important;
+
+}
+
+.input-perso-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #414040;
+  border-radius: 8px;
+   /* Espacio entre los elementos */
+}
+
+.perso-input {
+  border: 0;
+  padding: 8px 0;
+  text-align: center;
+  width: 100px; /* Ajusta el ancho según lo necesites */
+  background-color: #414040;
+  color: #ECEDEA;
+  font-family: "League Spartan";
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.65px;
+}
+
+.static-text {
+  color: #ECEDEA;
+  font-family: "League Spartan";
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  width: 20px;
+}
+
+.cross {
+  text-align: center;
+  color: #fff;
+  font-family: "Poppins";
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  margin-top: -20px;
+  margin-bottom: -20px;
+}
+
+/* Estilos para inputs de número */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ------------------ Archivos y Upload ------------------ */
+
+.left-pannel-adjust{display: grid;
+gap: 25px;margin-top: 35px;}
+
+.file-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.file-label p {
+  font-family: "League Spartan";
+  color: white;
+  font-size: 20px !important;
+  font-weight: 600;
+  line-height: 1px;
+}
+
+.custom-file-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.file-label img{opacity: 0.5;}
+.file-input {
+  display: none; /* Oculta el input de tipo file */
+}
+
+.file-label {
+  display: flex;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  
+  font-family: "Poppins";
+  font-size: 20px !important;
+  font-weight: 400;
+}
+
+.upload-container{display: flex; flex-direction: row;
+gap:20px;margin-top: -12px;
+font-family: "Poppins"; font-size: 20px;font-weight: 400;width: 100%;justify-content: center;}
+
+
+.center-down{
+  position: absolute;
+  bottom:-7rem;
+  background-color: #313131;
+  border-radius: 20px;
+  width: 168px;
+  height: 69px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  gap: 24px;
+}
+
+
+
+.btn-remove-file{
+  background-color: #313131 !important;
+border: 0;
+
+}
+
+.btn-remove-file img{
+  width: 26px;
+
+}
+
+.btn-remove-file img:hover{
+  width: 28px;
+
+}
+
+.upload-container{display: flex;}
+
+
+
+.radio-label input {
+  display: none;
+}
+input[type="radio"]:checked + .radio-custom {
+  border: 3px solid #f58220;
+}
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  margin-right: 8px;
+}
+
+/* ------------------ IA y Fondos ------------------ */
+.ia-text {
+  background-color: #181818e6;
+  color: #ECEDEA;
+  right: 20%;
+  top:90%;
+  text-align: center;
+  font-family: "Poppins";
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  padding: 10px;
+  border-radius: 8px;
+  position: absolute;
+ width: 240px;
+
+}
+
+.black-background {
+  background-color: black;
+}
+
+.white-background {
+  background-color: white;
+}
+
+.ia-background,
+#ia {
+  background: linear-gradient(
+    45deg,
+    #f58220,
+    #f98c26,
+    #fca52c,
+    #fecf32,
+    #fff740,
+    #c9e348,
+    #8ad95e,
+    #50cc72,
+    #00baa9,
+    #00a2d2,
+    #007bb5,
+    #00589f,
+    #002f89,
+    #000b72
+  );
+}
+
+/* Versión MOBILE */
+@media (max-width: 768px) {
+
+  .center-pannel {
+    width: 85vw !important;
+    
+  }
+  .option-pannels {
+    width: 82vw !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn{width: 30px;}
+  /* Ajustes generales */
+  
+  .calculator-container{width: 200px;}
+  /* Contenedores y layout */
+  .selector_size {
+    width: 90%;  /* Mayor ancho para dispositivos pequeños */
+    justify-content: start;
+  }
+  #perso{width: 62% !important;}
+  
+  .selector-size-container {
+    padding: 10px;
+    gap: 20px;
+    border-radius: 10px;
+  }
+  
+  .component-container {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0px;
+    justify-content: start;
+  }
+  
+  .selector_size-class {
+    flex-direction: column;
+  }
+  
+  /* Navbar y títulos */
+  .selector-size-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .mode-logo img {
+    width: 40px;
+    padding: 10px;
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+  }
+
+  .mode-buttons{padding-left: 0px !important;width: 80%;}
+  
+  .mode-buttons {
+    padding-left: 5px;
+  }
+  
+  .btn-mode {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  
+  /* Adaptar la sección de precio */
+  .price-section {
+    position: relative; /* Evitamos posiciones absolutas que pueden desbordar */
+    top: 0;
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Ajuste para el tooltip en el price-section (si aplica) */
+  .price-tooltip {
+    bottom: -120%; /* Ajusta la ubicación en pantalla pequeña */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    padding: 8px;
+  }
+  
+  /* Botones y contenedores de background-colors */
+  .background-colors-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .toggle-background-btn {
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+  }
+  
+  .toggle-background-btn img {
+    width: 20px;
+  }
+  
+  .background-colors {
+    position: relative;
+    top: 0;
+    right: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+    background-color: transparent;
+  }
+  
+  /* Opciones de radio */
+  .radio-label {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    margin: 5px 0;
+  }
+  
+  .radio-content {
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    width: auto;
+    height: auto;
+    padding: 5px;
+  }
+  
+  .radio-custom {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .radio-text {
+    font-size: 10px;
+  }
+  
+  .radio-img {
+    width: 16px;
+  }
+  
+  /* Ajustar contenedores de imagen */
+  .contenedor-imagen {
+    padding: 0px;
+    max-width: 100%;
+  }
+  
+  /* Footer, si es necesario */
+  footer {
+    font-size: 12px;
+    
+  }
+
+  #left-pannel-adjust{display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    margin-top: 20px;padding: 0 !important;
+    width: 100%;
+  }
+
+  #left-pannel-adjust2{display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    margin-top: 20px;padding: 0 !important;
+    width: 100%;
+  }
+  .left-pannel-title{padding: 0;
+  margin: 0;}
+
+  .left-pannel{width: 100%;flex-direction: column-reverse !important;gap:40px;}
+
+  .selector_size{display: flex;justify-content: center; width: 100%;}
+
+  .mousepad-container{padding: 20px;}
+
+  .option-pannels{width: 100%;}
+
+  .selector_size-class{margin-top: 40px;margin-bottom: 40px;}
+
+  .pannel-btn-doble{display: grid;grid-template-columns: 1fr 1fr ;}
+
+  .right-pannel{
+    background: transparent !important;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+  margin-left: 0px;
+  width: 100%;
+  justify-content: center;
+  padding: 20px;
+  
+  border-radius: 20px;
+  }
+
+
+
+  .btn-big{width: 90%;}
+  .right-pannel{padding: 0;margin: 0;}
+
+  .perso-options{width: 100%;padding-left: 20px;padding-right: 20px;}
+
+  .perso-input{width: 60%;}
+
+  .selector_size{margin-top: 25px;}
+  
+
+  .center-pannel{height: 550px;}
+
+  .navbar-container{margin-left: 20px;margin-right: 20px;padding-top: 20px;}
+
+  .alfombra-text{margin-top: -10px;font-size: 14px !important;}
+
+  .price-section p{font-size: 20px;}
+
+  .contain-div{
+    
+   
+    top:53%;
+    right:9.5%;
+    display: flex;
+
+    border-radius: 8px;
+    padding: 10px;
+    
+    
+   
+  }
+.radio-content{padding: 15px;}
+ 
+  }
+

@@ -1,0 +1,7 @@
+<svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 32H37.9375" stroke="#ECEDEA" stroke-width="4" stroke-linecap="round"/>
+<path d="M37.9375 2V32" stroke="#ECEDEA" stroke-width="4" stroke-linecap="round"/>
+<path d="M7 2H37.9375" stroke="#ECEDEA" stroke-width="4" stroke-linecap="round"/>
+<line x1="7" y1="2" x2="7" y2="15" stroke="#ECEDEA" stroke-width="4"/>
+<path d="M7 23L13.0622 13.25H0.937822L7 23Z" fill="#ECEDEA"/>
+</svg>

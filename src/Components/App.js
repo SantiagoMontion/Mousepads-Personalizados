@@ -1,5 +1,5 @@
 import "../css/App.css";
-<<<<<<< HEAD
+
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from "./Navbar";
@@ -75,26 +75,7 @@ function App() {
       </Router>
       <Footer />
     </>
-=======
-import React, { useState } from "react";
-import Scroll0 from "./Scroll0";
-import Navbar from "./Navbar";
-import MousepadContainer from "./MousepadContainer";
-import Footer from "./footer";
-import Scroll2 from "./Scroll2";
-function App() {
-  return (
-    <div className="App">
-      <div className="scroll-back">
-        <Navbar></Navbar>
 
-        <Scroll0></Scroll0>
-        <Scroll2></Scroll2>
-      </div>
-      <MousepadContainer></MousepadContainer>
-      <Footer></Footer>
-    </div>
->>>>>>> 310f5ed0a8834dec3cef659d7bd08cc2fcc22edc
   );
 }
 

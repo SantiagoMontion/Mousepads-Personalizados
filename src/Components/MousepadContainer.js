@@ -62,7 +62,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
     setSelectedClient(null)
     setWarningMessage("")
     setIsCircular(false)
-    
+    setPrice("")
   };
 
   const handleClickForm = () => {

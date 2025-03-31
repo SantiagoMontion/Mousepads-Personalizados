@@ -1256,6 +1256,27 @@ input[type="radio"]:checked + .radio-custom {
 /* Versión MOBILE */
 @media (max-width: 768px) {
 
+
+  .btn-big {display: grid;
+    grid-template-columns: 1fr  ;
+    gap: 0;
+    }
+
+  .center-down{
+  
+    bottom:-12rem;
+    
+  }
+  .product-selector{width: 100vw;}
+
+  .product-title{font-size: 28px;}
+  
+  .selector_size-class{width: 82vw;}
+
+  .btn-big-apply {width: 80vw;}
+
+  .input-perso-container{width: 80vw;}
+
   .center-pannel {
     width: 85vw !important;
     
@@ -1482,6 +1503,8 @@ input[type="radio"]:checked + .radio-custom {
    
   }
 .radio-content{padding: 15px;}
+
+
  
   }
 

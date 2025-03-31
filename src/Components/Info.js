@@ -5,12 +5,15 @@ import Calculador from "../Components/Calculador"
 const Info = () => {
   return (
     <div className="product-selector">
+      <div className='editor-text'>
       <h1 className="product-title">Mini Editor de MGM</h1>
       <p className="product-subtitle">Preview de tu modelo</p>
       <p className="product-text">
         Medí tu escritorio,<br></br> elegí un diseño,<br></br> y mira cómo queda:
       </p>
+
       <a href='/' className="create-button" >CREAR</a>
+      </div>
       <h2 className="choice-heading">¿Cuál es para mí?</h2>
 
       <div className="product-cards">

@@ -195,7 +195,9 @@
    ============================ */
 @media (max-width: 768px) {
   .product-selector {
-    padding: 20px 10px 20px 20px;
+    padding: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   
   .product-title {
@@ -209,7 +211,7 @@
   .product-text {
     font-size: 16px;
   }
-  
+  .editor-text{padding-left: 20px;padding-right: 20px;}
   .create-button {
     padding: 10px 20px;
     font-size: 16px;
@@ -223,6 +225,7 @@
   
   .product-cards {
     grid-template-columns: 1fr;
+    width: 100vw;
   }
   
   .product-card {

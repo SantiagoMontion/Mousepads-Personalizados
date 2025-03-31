@@ -31,6 +31,7 @@
     list-style: none;
     align-items: center;
     gap: 30px;
+    background-color: #181818;
   }
   
   .navbar-links li {
@@ -95,7 +96,7 @@
       top: 60px; /* Ajusta este valor según la altura de tu navbar */
       left: 0;
       right: 0;
-      background: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente para realzar los links en mobile */
+      background: #181818;/* Fondo semi-transparente para realzar los links en mobile */
       flex-direction: column;
       align-items: center;
       display: none;
@@ -105,6 +106,8 @@
     /* Activar la visualización del menú al hacer clic en el burger */
     .navbar-links.active {
       display: flex;
+      background: #181818ee !important;
+      border-radius: 20px;
     }
   
     .navbar-links li {

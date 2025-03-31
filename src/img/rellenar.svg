@@ -1,5 +1,19 @@
+<<<<<<< HEAD
 <svg width="41" height="21" viewBox="0 0 41 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="10" width="21" height="21" fill="#ECEDEA"/>
 <path d="M33 11L39 14.4641V7.5359L33 11Z" fill="#ECEDEA"/>
 <path d="M8 11L2 14.4641V7.5359L8 11Z" fill="#ECEDEA"/>
+=======
+<svg width="39" height="24" viewBox="0 0 39 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_439_134)">
+<path d="M37 1H2V23H37V1Z" fill="#747474"/>
+<path d="M30 1H9V23H30V1Z" fill="#151515"/>
+<path d="M1 23L38 23V1L1 1V23Z" stroke="#D5D5D5" stroke-width="3.7" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_439_134">
+<rect width="39" height="24" fill="white"/>
+</clipPath>
+</defs>
+>>>>>>> 310f5ed0a8834dec3cef659d7bd08cc2fcc22edc
 </svg>

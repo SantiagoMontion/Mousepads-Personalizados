@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0.000113408 35L11.1537 32.0114L2.98871 23.8465L0.000113408 35ZM14.2931 19.2929L5.65699 27.929L7.07121 29.3432L15.7074 20.7071L14.2931 19.2929Z" fill="#ECEDEA"/>
 <path d="M34.9999 35L23.8463 32.0114L32.0113 23.8465L34.9999 35ZM20.7069 19.2929L29.343 27.929L27.9288 29.3432L19.2926 20.7071L20.7069 19.2929Z" fill="#ECEDEA"/>
 <path d="M0.000113408 -1.44063e-05L11.1537 2.98856L2.98871 11.1535L0.000113408 -1.44063e-05ZM14.2931 15.7071L5.65699 7.07103L7.07121 5.65682L15.7074 14.2929L14.2931 15.7071Z" fill="#ECEDEA"/>
 <path d="M34.9999 -1.44063e-05L23.8463 2.98856L32.0113 11.1535L34.9999 -1.44063e-05ZM20.7069 15.7071L29.343 7.07103L27.9288 5.65682L19.2926 14.2929L20.7069 15.7071Z" fill="#ECEDEA"/>
+=======
+<svg width="39" height="24" viewBox="0 0 39 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_439_128)">
+<path d="M38 1H1V23H38V1Z" fill="#151515"/>
+<path d="M1 23L38 23V1L1 1V23Z" stroke="#D5D5D5" stroke-width="3.7" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_439_128">
+<rect width="39" height="24" fill="white"/>
+</clipPath>
+</defs>
+>>>>>>> 310f5ed0a8834dec3cef659d7bd08cc2fcc22edc
 </svg>

@@ -12,11 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 
 
-const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileInputRef }) => {
+const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileInputRef, setPrice }) => {
   const navigate = useNavigate();
   const [selectedClient, setSelectedClient] = useState(null);
   const [Bandera, setBandera] = useState("");
-
+  
   const [Align, setAlign] = useState("center");
   const [Justify, setJustify] = useState("center");
   const [isMirrored, setIsMirrored] = useState(false);
@@ -303,6 +303,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
         
         {mode === "Clasic" ? (
           <Classic 
+            setPrice={setPrice}
             warningMessage={warningMessage}
             handleClickForm={handleClickForm}
             fileInputRef={fileInputRef}
@@ -313,6 +314,8 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
             widthCm={widthCm}
             mode={mode}
             heightCm={heightCm}
+            setHeightCm={setHeightCm}
+            setWidthCm={setWidthCm}
             div3Visible={div3Visible}
             selectedClient={selectedClient}
             setSelectedClient={setSelectedClient}
@@ -320,7 +323,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
             isMirrored={isMirrored}
             imageMode={imageMode}
             height={height}
-            width={width}
+           
             handleChangeColor={handleChangeColor}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
@@ -341,7 +344,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
           />
         ) : mode === "Alfombra" ? (
           <Alfombra 
-          
+            setPrice={setPrice}
             toggleCircular={toggleCircular}
             isCircular={isCircular}
             warningMessage={warningMessage}
@@ -354,6 +357,8 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
             widthCm={widthCm}
             mode={mode}
             heightCm={heightCm}
+            setHeightCm={setHeightCm}
+            setWidthCm={setWidthCm}
             div3Visible={div3Visible}
             selectedClient={selectedClient}
             setSelectedClient={setSelectedClient}
@@ -361,7 +366,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
             isMirrored={isMirrored}
             imageMode={imageMode}
             height={height}
-            width={width}
+            
             handleChangeColor={handleChangeColor}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
@@ -382,6 +387,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
           />
         ) : (
           <Pro 
+            setPrice={setPrice}
             warningMessage={warningMessage}
             handleClickForm={handleClickForm}
             fileInputRef={fileInputRef}
@@ -392,6 +398,8 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
             widthCm={widthCm}
             mode={mode}
             heightCm={heightCm}
+            setHeightCm={setHeightCm}
+            setWidthCm={setWidthCm}
             div3Visible={div3Visible}
             selectedClient={selectedClient}
             setSelectedClient={setSelectedClient}
@@ -399,7 +407,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
             isMirrored={isMirrored}
             imageMode={imageMode}
             height={height}
-            width={width}
+            
             handleChangeColor={handleChangeColor}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}

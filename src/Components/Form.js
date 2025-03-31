@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import "../css/form.css";
 import back from "../img/back.svg"
-const ContactForm = ({ file, setFile }) => {
+const ContactForm = ({ file, setFile , price}) => {
   const location = useLocation();
   const {
     selectedClient,
@@ -104,7 +104,7 @@ const ContactForm = ({ file, setFile }) => {
       Tipo: ${translateString(mode)}
       Circular?: ${translateString(isCircular)}
       Medida: ${translateString(selectedClient)}
-
+      Precio ${price}
       --------------------------
 
       Nombre del Modelo: ${nombreModelo}

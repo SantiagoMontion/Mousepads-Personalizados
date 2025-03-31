@@ -13,6 +13,7 @@ function App() {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
   // Creamos un ref para el input de archivo.
+  const [price, setPrice] = useState('')
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
@@ -62,11 +63,12 @@ function App() {
                 preview={preview}
                 setFile={setFile} 
                 onFileRemove={handleRemoveFile}
-                fileInputRef={fileInputRef} // Se pasa el ref al componente hijo
+                fileInputRef={fileInputRef} 
+                setPrice={setPrice}// Se pasa el ref al componente hijo
               />
             }
           />
-          <Route path="/formulario" element={<Form file={file} setFile={setFile}  />} />
+          <Route path="/formulario" element={<Form file={file} setFile={setFile} price={price} />} />
           <Route path="/informacion" element={<Info/>} />
           <Route path="/calculadora" element={<Calculador />} />
           {/* Ruta comodín para redirigir a la página principal */}

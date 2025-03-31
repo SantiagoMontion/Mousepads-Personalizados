@@ -24,7 +24,10 @@ function Classic({
   isMirrored,
   imageMode,
   height, // Valor fallback en px para PERSO en caso de que no se ingresen medidas
-  width,
+  widthCm,
+  setWidthCm,
+  heightCm,
+  setHeightCm,
   handleChangeColor,
   handleMouseEnter,
   handleMouseLeave,
@@ -33,12 +36,12 @@ function Classic({
   onFileChange,
   onFileRemove,
   handleClickForm,
-  warningMessage
+  warningMessage,
+  setPrice
  
 }) {
   // Estados locales para las medidas personalizadas (en cm)
-  const [widthCm, setWidthCm] = useState("");
-  const [heightCm, setHeightCm] = useState("");
+
   
   // Estado para el tamaño seleccionado (local); se inicializa con el que viene o "S" por defecto.
   const [localClient, setLocalClient] = useState(selectedClient || "");
@@ -135,8 +138,8 @@ const config = {
   PERSO: {
     containerId: null,
     containerStyle: {
-      height: `${(heightCm ? parseInt(heightCm, 10) : height) * cmToPx * mobileFactor}px`,
-      width: `${(widthCm ? parseInt(widthCm, 10) : width) * cmToPx * mobileFactor}px`
+      height: `${(heightCm ? parseInt(heightCm, 10) : heightCm) * cmToPx * mobileFactor}px`,
+      width: `${(widthCm ? parseInt(widthCm, 10) : widthCm) * cmToPx * mobileFactor}px`
     },
     containerClass: "contenedor-imagen",
     imageId: selectedColor,
@@ -268,6 +271,7 @@ const config = {
       width={parseInt(widthCm, 10)}
       height={parseInt(heightCm, 10)}
       mode={mode}
+      setPrice={setPrice}
     />
   )}
   <div className="price-tooltip">
@@ -337,7 +341,7 @@ confirmar tu compra.
               <button
                 className={`btn-big-apply ${activeButton === "PERSO" ? "active" : ""}`}
                 onClick={() => {
-                  // Forzar medida mínima de 25cm por lado
+                  // Forzar medida mínima de 25cm por lado\
                   const minMeasure = 25;
                   let newWidth = parseInt(widthCm, 10);
                   let newHeight = parseInt(heightCm, 10);
@@ -345,9 +349,11 @@ confirmar tu compra.
                   if (newHeight < minMeasure) newHeight = minMeasure;
                   setWidthCm(newWidth.toString());
                   setHeightCm(newHeight.toString());
-                  // Se asigna el tamaño personalizado
                   setLocalClient("PERSO");
+                  if (setSelectedClient) setSelectedClient("PERSO");
                   setActiveButton("PERSO");
+                  
+                
                 }}
               >
                 Aplicar

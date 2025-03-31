@@ -29,7 +29,10 @@ function Pro({
   isMirrored,
   imageMode,
   height, // Valor fallback en px para PERSO, si no se ingresan medidas
-  width,
+  widthCm,
+  setWidthCm,
+  heightCm,
+  setHeightCm,
   handleChangeColor,
   handleMouseEnter,
   handleMouseLeave,
@@ -38,11 +41,11 @@ function Pro({
   onFileChange,
   onFileRemove,
   handleClickForm,
-  warningMessage
+  warningMessage,
+  setPrice
 }) {
   // Estados locales para las medidas personalizadas (en cm)
-  const [widthCmState, setWidthCmState] = useState("");
-  const [heightCmState, setHeightCmState] = useState("");
+
   // Estado para el tamaño seleccionado; si no se envía, se asume "S" por defecto.
   const [localClient, setLocalClient] = useState(selectedClient || "");
   // Estado para el botón activo (resaltado)
@@ -65,8 +68,8 @@ function Pro({
     if (parts.length === 2) {
       const newWidth = parseInt(parts[0].replace(/\D/g, ""), 10);
       const newHeight = parseInt(parts[1].replace(/\D/g, ""), 10);
-      setWidthCmState(newWidth.toString());
-      setHeightCmState(newHeight.toString());
+      setWidthCm(newWidth.toString());
+      setHeightCm(newHeight.toString());
       setLocalClient(size);
       if (setSelectedClient) setSelectedClient(size);
       setActiveButton(size); // Se marca el botón estándar como activo
@@ -75,11 +78,11 @@ function Pro({
 
   // Funciones para los inputs personalizados
   const onWidthChange = (e) => {
-    setWidthCmState(e.target.value);
+    setWidthCm(e.target.value);
   };
 
   const onHeightChange = (e) => {
-    setHeightCmState(e.target.value);
+    setHeightCm(e.target.value);
   };
 
   // Se usa el tamaño seleccionado (localClient) para definir la configuración.
@@ -135,8 +138,8 @@ const config = {
   PERSO: {
     containerId: null,
     containerStyle: {
-      height: `${(heightCmState ? parseInt(heightCmState, 10) : height) * cmToPx * mobileFactor}px`,
-      width: `${(widthCmState ? parseInt(widthCmState, 10) : width) * cmToPx * mobileFactor}px`
+      height: `${(heightCm ? parseInt(heightCm, 10) : heightCm) * cmToPx * mobileFactor}px`,
+      width: `${(widthCm ? parseInt(widthCm, 10) : widthCm) * cmToPx * mobileFactor}px`
     },
     containerClass: "contenedor-imagen",
     imageId: selectedColor,
@@ -161,18 +164,17 @@ const config = {
       <Settings
         preciospro={preciospro}
         precios={precios}
-        widthCm={widthCmState}
+        widthCm={widthCm}
         handleWidthChange={onWidthChange}
         div1Visible={div1Visible}
         div2Visible={div2Visible}
-        heightCm={heightCmState}
+        heightCm={heightCm}
         div3Visible={div3Visible}
         selectedClient={localClient} // Tamaño actualizado
         Bandera={Bandera}
         isMirrored={isMirrored}
         imageMode={imageMode}
-        height={height}
-        width={width}
+        
         handleChangeColor={handleChangeColor}
         handleMouseEnter={handleMouseEnter}
         handleMouseLeave={handleMouseLeave}
@@ -255,11 +257,12 @@ const config = {
         {/* Panel derecho: Sección de precio, separador y opciones de medidas */}
         <div className="right-pannel">
         <div className="price-section">
-  {widthCmState && heightCmState && (
+  {widthCm && heightCm && (
     <Calculadora
-      width={parseInt(widthCmState, 10)}
-      height={parseInt(heightCmState, 10)}
+      width={parseInt(widthCm, 10)}
+      height={parseInt(heightCm, 10)}
       mode={mode}
+      setPrice={setPrice}
     />
   )}
   <div className="price-tooltip">
@@ -286,14 +289,14 @@ confirmar tu compra.
                 </div>
               ))}
             </div>
-            <h4 className="pannel-mini-text">Personalizadas</h4>
+            <h4 className="pannel-title">PERSONALIZAR</h4>
             <div className="perso-options">
               <div className="input-perso-container">
                 <span className="static-text">LARGO</span>
                 <input
                   className="perso-input"
                   type="text"
-                  value={widthCmState}
+                  value={widthCm}
                   onChange={onWidthChange}
                   onInput={(e) => {
                     e.target.value = e.target.value.replace(/[^0-9]/g, "");
@@ -310,7 +313,7 @@ confirmar tu compra.
                 <input
                   className="perso-input"
                   type="text"
-                  value={heightCmState}
+                  value={heightCm}
                   onChange={onHeightChange}
                   onInput={(e) => {
                     e.target.value = e.target.value.replace(/[^0-9]/g, "");
@@ -326,12 +329,12 @@ confirmar tu compra.
                 onClick={() => {
                   // Forzamos que la medida personalizada mínima sea 25x25 cm.
                   const minMeasure = 25;
-                  let newWidth = parseInt(widthCmState, 10);
-                  let newHeight = parseInt(heightCmState, 10);
+                  let newWidth = parseInt(widthCm, 10);
+                  let newHeight = parseInt(heightCm, 10);
                   if (newWidth < minMeasure) newWidth = minMeasure;
                   if (newHeight < minMeasure) newHeight = minMeasure;
-                  setWidthCmState(newWidth.toString());
-                  setHeightCmState(newHeight.toString());
+                  setWidthCm(newWidth.toString());
+                  setHeightCm(newHeight.toString());
                   setLocalClient("PERSO");
                   if (setSelectedClient) setSelectedClient("PERSO");
                   setActiveButton("PERSO");

@@ -27,8 +27,10 @@ function Alfombra({
   setSelectedClient, // Setter proveniente del padre
   isMirrored,
   imageMode,
-  height, // Valor fallback en px para PERSO, si no se ingresan medidas
-  width,
+  widthCm,
+  setWidthCm,
+  heightCm,
+  setHeightCm,
   handleChangeColor,
   handleMouseEnter,
   handleMouseLeave,
@@ -40,12 +42,12 @@ function Alfombra({
   warningMessage,
   toggleCircular,
   isCircular,
+  setPrice
   
 }) {
   // Estados locales para las medidas personalizadas (en cm)
   // Se interpretarán: widthCm = Ancho, heightCm = Largo
-  const [widthCm, setWidthCm] = useState("");
-  const [heightCm, setHeightCm] = useState("");
+
   const [activeButton, setActiveButton] = useState(selectedClient || "");
   // Estado para el tamaño seleccionado (local); se inicializa con el valor recibido o "S" por defecto.
   const [localClient, setLocalClient] = useState(selectedClient || "");
@@ -122,8 +124,8 @@ function Alfombra({
     PERSO: {
       containerId: null,
       containerStyle: {
-        width: `${(widthCm ? parseInt(widthCm, 10) : width) * cmToPx * mobileFactor}px`,
-        height: `${(heightCm ? parseInt(heightCm, 10) : height) * cmToPx * mobileFactor}px`,
+        width: `${(widthCm ? parseInt(widthCm, 10) : widthCm) * cmToPx * mobileFactor}px`,
+        height: `${(heightCm ? parseInt(heightCm, 10) : heightCm) * cmToPx * mobileFactor}px`,
       },
       containerClass: "contenedor-imagen",
       imageId: selectedColor,
@@ -217,8 +219,7 @@ function Alfombra({
         selectedClient={localClient} // Se pasa el tamaño actualizado
         isMirrored={isMirrored}
         imageMode={imageMode}
-        height={height}
-        width={width}
+        
         handleChangeColor={handleChangeColor}
         handleMouseEnter={handleMouseEnter}
         handleMouseLeave={handleMouseLeave}
@@ -318,6 +319,7 @@ function Alfombra({
       width={parseInt(widthCm, 10)}
       height={parseInt(heightCm, 10)}
       mode={mode}
+      setPrice={setPrice}
     />
   )}
   <div className="price-tooltip">

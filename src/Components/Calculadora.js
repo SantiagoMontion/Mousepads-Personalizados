@@ -7,7 +7,7 @@ const rolloData = {
   Alfombra: { width: 154, pricePerMeter: 25000 },
 };
 
-const Calculadora = ({ width, height, mode }) => {
+const Calculadora = ({ width, height, mode ,setPrice }) => {
   if (!rolloData[mode]) {
     return <p>Modo no válido</p>;
   }
@@ -92,7 +92,7 @@ const Calculadora = ({ width, height, mode }) => {
   };
   
   const clientFinalPriceRounded = roundPrice(clientFinalPrice);
-  
+  setPrice(clientFinalPriceRounded)
   return (
     <div>
       <p className="p-calcu">

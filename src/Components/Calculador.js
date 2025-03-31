@@ -86,7 +86,7 @@ const [heightInput, setHeightInput] = useState("");
   return (
     <div className="product-selector">
     <h2 className="choice-heading">Calcula el precio<br></br>
-    de tu mediada</h2>
+    de tu medida</h2>
 
 
     <div className='calculator-container'>

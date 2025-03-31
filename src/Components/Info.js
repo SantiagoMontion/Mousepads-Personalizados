@@ -5,6 +5,7 @@ import Calculador from "../Components/Calculador"
 const Info = () => {
   return (
     <div className="product-selector">
+      <div className='info-contain'>
       <div className='editor-text'>
       <h1 className="product-title">Mini Editor de MGM</h1>
       <p className="product-subtitle">Preview de tu modelo</p>
@@ -76,6 +77,7 @@ const Info = () => {
           </ul>
           <a href='/' className="select-button">QUIERO ESTE</a>
         </div>
+      </div>
       </div>
       <Calculador></Calculador>
     </div>

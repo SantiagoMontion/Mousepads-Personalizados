@@ -7,7 +7,7 @@ const rolloData = {
   Alfombra: { width: 154, pricePerMeter: 25000 },
 };
 
-const Calculadora = ({ width, height, mode ,setPrice }) => {
+const Calculadora = ({ width, height, mode, setPrice }) => {
   if (!rolloData[mode]) {
     return <p>Modo no válido</p>;
   }
@@ -92,7 +92,14 @@ const Calculadora = ({ width, height, mode ,setPrice }) => {
   };
   
   const clientFinalPriceRounded = roundPrice(clientFinalPrice);
-  setPrice(clientFinalPriceRounded)
+
+  // Actualizamos el precio solo si setPrice es una función para evitar errores.
+  if (setPrice && typeof setPrice === "function") {
+    setPrice(clientFinalPriceRounded);
+  } else {
+    console.error("setPrice no es una función", setPrice);
+  }
+  
   return (
     <div>
       <p className="p-calcu">
@@ -114,4 +121,3 @@ const Calculadora = ({ width, height, mode ,setPrice }) => {
 };
 
 export default Calculadora;
-

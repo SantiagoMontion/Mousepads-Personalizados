@@ -16,84 +16,96 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   const { width: rolloWidth, pricePerMeter } = rolloData[mode];
   const rolloWidthM = rolloWidth / 100;
   
-  // Convertir las medidas de la pieza (en cm) a metros.
-  const pieceWidth = width / 100;
-  const pieceHeight = height / 100;
-
-  // Detecta si se eligió exactamente 140x100 en modo Alfombra.
-  const isExactAlfombra = mode === "Alfombra" && pieceWidth === 1.4 && pieceHeight === 1;
+  // ----- Normalización de medidas para tratar medidas similares -----
+  // Se redondea hacia abajo al múltiplo de 10.
+  const normalizedWidthCm = Math.floor(width / 10) * 10;
+  const normalizedHeightCm = Math.floor(height / 10) * 10;
   
-  // --- Cálculo yield (eficiencia de corte) ---
-  const unitsHorizontal =
-    Math.floor(rolloWidthM / pieceWidth) * Math.floor(1 / pieceHeight);
-  const unitsRotated =
-    Math.floor(rolloWidthM / pieceHeight) * Math.max(Math.floor(1 / pieceWidth), 1);
-  const defaultUnitsPerMeter = Math.max(unitsHorizontal, unitsRotated);
-  const unitsPerMeter = defaultUnitsPerMeter < 1 ? 1 : defaultUnitsPerMeter;
+  // Convertir las medidas normalizadas (en cm) a metros para los cálculos base.
+  const pieceWidthNormalized = normalizedWidthCm / 100;
+  const pieceHeightNormalized = normalizedHeightCm / 100;
   
-  // Precio base yield: precio del metro dividido entre las unidades por metro.
-  const defaultPricePerUnit = pricePerMeter / unitsPerMeter;
+  // --- Cálculo yield (eficiencia de corte) usando las dimensiones normalizadas ---
+  const unitsHorizontal_norm =
+    Math.floor(rolloWidthM / pieceWidthNormalized) *
+    Math.floor(1 / pieceHeightNormalized);
+  const unitsRotated_norm =
+    Math.floor(rolloWidthM / pieceHeightNormalized) *
+    Math.max(Math.floor(1 / pieceWidthNormalized), 1);
+  const defaultUnitsPerMeter_norm = Math.max(
+    unitsHorizontal_norm,
+    unitsRotated_norm
+  );
+  const unitsPerMeter_norm =
+    defaultUnitsPerMeter_norm < 1 ? 1 : defaultUnitsPerMeter_norm;
   
-  // Modelo rotado: se aplica si el ancho de la pieza es mayor que 1 m y menor que el ancho del rollo,
-  // excepto si se eligió exactamente 140x100 en Alfombra.
-  const useRotatedModel = !isExactAlfombra && pieceWidth > 1 && pieceWidth < rolloWidthM;
-  let finalCostPerUnitYield;
-  if (useRotatedModel) {
-    // Distribuir el costo extra del exceso de largo entre las piezas de la fila.
-    const piecesPerRow = Math.floor(rolloWidthM / pieceHeight);
-    const baseCostPerUnit = pricePerMeter / piecesPerRow;
-    const extraCost = ((pieceWidth - 1) * pricePerMeter) / piecesPerRow;
-    finalCostPerUnitYield = baseCostPerUnit + extraCost;
+  const defaultPricePerUnit_norm = pricePerMeter / unitsPerMeter_norm;
+  
+  // Se mantiene la lógica del modelo rotado para dimensiones normalizadas.
+  const isExactAlfombra_norm =
+    mode === "Alfombra" &&
+    pieceWidthNormalized === 1.4 &&
+    pieceHeightNormalized === 1;
+  const useRotatedModel_norm =
+    !isExactAlfombra_norm &&
+    pieceWidthNormalized > 1 &&
+    pieceWidthNormalized < rolloWidthM;
+  
+  let finalCostPerUnitYield_norm;
+  if (useRotatedModel_norm) {
+    const piecesPerRow_norm = Math.floor(rolloWidthM / pieceHeightNormalized);
+    const baseCostPerUnit_norm = pricePerMeter / piecesPerRow_norm;
+    const extraCost_norm =
+      ((pieceWidthNormalized - 1) * pricePerMeter) / piecesPerRow_norm;
+    finalCostPerUnitYield_norm = baseCostPerUnit_norm + extraCost_norm;
   } else {
-    finalCostPerUnitYield = defaultPricePerUnit;
+    finalCostPerUnitYield_norm = defaultPricePerUnit_norm;
   }
   
-  // Multiplicador de venta: 3 para Pro, 2.2 para Clasic y 3.5 para Alfombra.
-  const multiplier = mode === "Clasic" ? 2.7 : mode === "Pro" ? 3.2 : 3.8;
-  const yieldPrice = finalCostPerUnitYield * multiplier;
+  // Multiplicador (se conserva la misma lógica original).
+  const multiplier =
+    mode === "Clasic" ? 2.7 : mode === "Pro" ? 3.2 : 3.8;
+  const yieldPrice_norm = finalCostPerUnitYield_norm * multiplier;
   
-  // --- Cálculo basado en el área ---
-  const costPerM2 = pricePerMeter / rolloWidthM;
-  const area = pieceWidth * pieceHeight; // Área en m².
-  const areaPrice = area * costPerM2 * multiplier;
+  // --- Cálculo basado en el área (usando dimensiones normalizadas) ---
+  const costPerM2_norm = pricePerMeter / rolloWidthM;
+  const area_norm = pieceWidthNormalized * pieceHeightNormalized;
+  const areaPrice_norm = area_norm * costPerM2_norm * multiplier;
   
-  // Se toma el menor entre yieldPrice y areaPrice,
-  // asegurando que piezas que ocupan menos área tengan un precio base más bajo.
-  let baseFinalPrice = Math.min(yieldPrice, areaPrice);
+  // Se toma el menor entre yieldPrice y areaPrice.
+  let baseFinalPrice_norm = Math.min(yieldPrice_norm, areaPrice_norm);
   
-  // --- Recargo (surcharge) por aumento de área extra ---
-  let baselineArea;
+  // --- Recargo por aumento de área extra ---
+  let baselineArea_norm;
   if (mode === "Pro") {
-    baselineArea = 0.26;
+    baselineArea_norm = 0.26;
   } else {
-    baselineArea = 0.36;
+    baselineArea_norm = 0.36;
   }
   const surchargeFactor = 5000;
-  const extraArea = Math.max(0, area - baselineArea);
-  const areaSurcharge = surchargeFactor * extraArea;
+  const extraArea_norm = Math.max(0, area_norm - baselineArea_norm);
+  const areaSurcharge_norm = surchargeFactor * extraArea_norm;
   
-  // Precio final del cliente suma la base y el recargo.
-  let clientFinalPrice = baseFinalPrice + areaSurcharge;
+  let clientFinalPrice_norm = baseFinalPrice_norm + areaSurcharge_norm;
   
-  // --- Condición adicional ---
-  // Si la pieza es menor a 40x40 cm, se aplica un incremento del 30% al precio.
+  // ----- Recargo por dimensiones mayores a las medidas normalizadas -----
+  // Si la dimensión ingresada es mayor que la normalizada, se suma 500 por cada dimensión.
+  const extraCharge =
+    (width > normalizedWidthCm ? 500 : 0) +
+    (height > normalizedHeightCm ? 500 : 0);
+  
+  clientFinalPrice_norm += extraCharge;
+  
+  // ----- Condición adicional para piezas muy chicas -----
   if (width < 40 && height < 40) {
-    clientFinalPrice *= 1.3;
+    clientFinalPrice_norm *= 1.3;
   }
   
-  // --- Redondeo ---
-  const roundPrice = (price) => {
-    const remainder = price % 500;
-    if (remainder < 50) {
-      return price - remainder;
-    } else {
-      return price - remainder + 500;
-    }
-  };
+  // ----- Redondeo siempre hacia arriba al siguiente múltiplo de 500 -----
+  const roundPrice = (price) => Math.ceil(price / 500) * 500;
   
-  const clientFinalPriceRounded = roundPrice(clientFinalPrice);
-
-  // Actualizamos el precio solo si setPrice es una función para evitar errores.
+  const clientFinalPriceRounded = roundPrice(clientFinalPrice_norm);
+  
   if (setPrice && typeof setPrice === "function") {
     setPrice(clientFinalPriceRounded);
   } else {
@@ -112,9 +124,9 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
         <p className="alfombra-text">50% off en la segunda unidad</p>
       )}
       {/*
-      <p>Área: {area.toFixed(2)} m² (baseline: {baselineArea} m²)</p>
-      <p>YieldPrice: ${yieldPrice.toFixed(2)} vs. AreaPrice: ${areaPrice.toFixed(2)}</p>
-      <p>Surcharge: ${areaSurcharge.toFixed(2)}</p>
+      <p>Área (normalizada): {area_norm.toFixed(2)} m² (baseline: {baselineArea_norm} m²)</p>
+      <p>YieldPrice (normalizado): ${yieldPrice_norm.toFixed(2)} vs. AreaPrice: ${areaPrice_norm.toFixed(2)}</p>
+      <p>Recargo (area): ${areaSurcharge_norm.toFixed(2)}</p>
       */}
     </div>
   );

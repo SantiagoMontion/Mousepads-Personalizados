@@ -27,10 +27,15 @@ const ContactForm = ({ file, setFile , price}) => {
   const [loading, setLoading] = useState(false); // Estado para controlar la animación de carga
 
   const handleNombreModeloChange = (event) => {
-    setNombreModelo(event.target.value);
+    const newValue = event.target.value;
+    // Esta expresión regular permite letras (mayúsculas y minúsculas),
+    // números, espacios, la letra ñ (y Ñ) y vocales con acento.
+    const regex = /^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]*$/;
+    
+    if (regex.test(newValue)) {
+      setNombreModelo(newValue);
+    }
   };
-
-
   const handleComentarioChange = (event) => {
     setComentario(event.target.value);
   };
@@ -94,7 +99,7 @@ const ContactForm = ({ file, setFile , price}) => {
 
     formData.append("file", file); 
     formData.append("nombreModelo", nombreModelo);
-    formData.append("comentario", comentario);
+    
 
     // Agregar otros parámetros adicionales
     formData.append("subject", `Mousepad Personalizado ${nombreModelo} ${translateString(selectedClient)}`);
@@ -190,7 +195,7 @@ el link de compra
           <button
             className="button-email"
             type="submit"
-            disabled={!selectedClient || !file || state.submitting}
+            disabled={!selectedClient || !file || state.submitting }
           >
             {loading ? (
               <div className="spinner"></div>

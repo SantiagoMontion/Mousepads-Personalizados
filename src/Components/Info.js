@@ -42,7 +42,7 @@ const Info = () => {
         <div className="top-right-label">más elegido</div>
           <h3 className="card-title">Mousepad Pro</h3>
           <p className="card-tag">speed</p>
-          <p className="card-description">Con este carreras sí o sí</p>
+          <p className="card-description">Con este carreas sí o sí</p>
           <ul className="card-features">
             <li>Superficie ultralisa</li>
             <li>100% caucho natural</li>

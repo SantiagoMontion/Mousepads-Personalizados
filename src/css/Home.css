@@ -10,7 +10,7 @@ html, body{background-color: #ECEDEA;}
 display: flex;justify-content: center;align-items: center;grid-template-columns: 1fr ;padding-top: 50px;padding-bottom: 20px;flex-wrap: wrap; gap: 20px;}
 
 .home-btn{background-color: #ECEDEA; padding: 15px;width: 100%;font-family: "Poppins";font-size: 16px;font-weight: 600;color: #181818;
-border-radius: 8px; display: flex;justify-content: center;align-items: center;margin-left: 50px;margin-right: 50px;}
+border-radius: 8px; display: flex;justify-content: center;align-items: center;margin-left: 30px;margin-right: 30px; text-align: center;}
 
 .home-p{font-family: "Poppins";font-size: 16px;font-weight: 400;color: #fff;text-align: center;}
 

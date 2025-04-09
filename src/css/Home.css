@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Spartan:wght@100..900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+
+.home-img{display: flex;justify-content: center;align-items: center;height: 220px;}
+
+html, body{background-color: #ECEDEA;}
+
+.home-second{background-color: #181818; border-radius: 53px 53px 0px  0px;
+display: flex;justify-content: center;align-items: center;grid-template-columns: 1fr ;padding-top: 50px;padding-bottom: 20px;flex-wrap: wrap; gap: 20px;}
+
+.home-btn{background-color: #ECEDEA; padding: 15px;width: 100%;font-family: "Poppins";font-size: 16px;font-weight: 600;color: #181818;
+border-radius: 8px; display: flex;justify-content: center;align-items: center;margin-left: 50px;margin-right: 50px;}
+
+.home-p{font-family: "Poppins";font-size: 16px;font-weight: 400;color: #fff;text-align: center;}
+
+.trap{font-size: 100px;line-height: 10px;margin-top: 60px;}
+
+.p-footer-home{font-family: "Poppins";font-size: 13px;font-weight: 400;color: #fff;text-align: center; width: 100%;padding-bottom: 20px;margin-top: -15px;}

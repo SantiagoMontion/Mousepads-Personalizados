@@ -1,13 +1,14 @@
 import "../css/App.css";
 
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Navbar from "./Navbar";
 import MousepadContainer from "./MousepadContainer";
 import Footer from "./footer";
 import Form from "./Form.js";
 import Calculador from "./Calculador.js";
 import Info from "./Info.js";
+import Home from "./Home.js";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -31,6 +32,21 @@ function App() {
     }
   };
 
+  const WithNavbar = () => (
+    <>
+      <div className="App">
+        <div className="scroll-back">
+          <Navbar />
+        </div>
+      </div>
+  
+      <Outlet />
+  
+      <Footer />
+    </>
+  );
+  
+
   useEffect(() => {
     if (!file) {
       setPreview("");
@@ -46,38 +62,36 @@ function App() {
   }, [file]);
 
   return (
-    <>
-      <div className="App">
-        <div className="scroll-back">
-          <Navbar />
-        </div>
-      </div>
-      <Router>
-        <Routes>
+    <Router>
+      <Routes>
+        {/* Todas estas rutas van envueltas en WithNavbar */}
+        <Route element={<WithNavbar />}>
           <Route
             path="/"
             element={
               <MousepadContainer 
-                onFileChange={handleFileChange} 
-                file={file} 
+                onFileChange={handleFileChange}
+                file={file}
                 preview={preview}
-                setFile={setFile} 
+                setFile={setFile}
                 onFileRemove={handleRemoveFile}
-                fileInputRef={fileInputRef} 
-                setPrice={setPrice}// Se pasa el ref al componente hijo
+                fileInputRef={fileInputRef}
+                setPrice={setPrice}
               />
             }
           />
           <Route path="/formulario" element={<Form file={file} setFile={setFile} price={price} />} />
-          <Route path="/informacion" element={<Info/>} />
+          <Route path="/informacion" element={<Info />} />
           <Route path="/calculadora" element={<Calculador />} />
-          {/* Ruta comodín para redirigir a la página principal */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Router>
-      <Footer />
-    </>
+        </Route>
 
+        {/* Esta ruta va **sin** Navbar ni Footer */}
+        <Route path="/home" element={<Home />} />
+
+        {/* Wildcard */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }
 

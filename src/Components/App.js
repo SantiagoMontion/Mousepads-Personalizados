@@ -32,19 +32,19 @@ function App() {
     }
   };
 
-  const WithNavbar = () => (
-    <>
-      <div className="App">
-        <div className="scroll-back">
-          <Navbar />
-        </div>
-      </div>
+  // const WithNavbar = () => (
+  //   <>
+  //     <div className="App">
+  //       <div className="scroll-back">
+  //         <Navbar />
+  //       </div>
+  //     </div>
   
-      <Outlet />
+  //     <Outlet />
   
-      <Footer />
-    </>
-  );
+  //     <Footer />
+  //   </>
+  // );
   
 
   useEffect(() => {
@@ -65,7 +65,7 @@ function App() {
     <Router>
       <Routes>
         {/* Todas estas rutas van envueltas en WithNavbar */}
-        <Route element={<WithNavbar />}>
+        <Route >
           <Route
             path="/"
             element={

@@ -2,7 +2,7 @@ import React from "react";
 import "../css/MousepadContainer.css";
 
 const rolloData = {
-  Pro: { width: 125, pricePerMeter: 35445 },
+  Pro: { width: 125, pricePerMeter: 36145 },
   Clasic: { width: 140, pricePerMeter: 23820 },
   Alfombra: { width: 154, pricePerMeter: 25000 },
 };

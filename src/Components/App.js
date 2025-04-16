@@ -62,6 +62,8 @@ function App() {
   }, [file]);
 
   return (
+    <>
+    <Navbar></Navbar>
     <Router>
       <Routes>
         {/* Todas estas rutas van envueltas en WithNavbar */}
@@ -92,7 +94,10 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
+    <Footer></Footer>
+    </>
   );
+  
 }
 
 export default App;

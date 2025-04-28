@@ -74,7 +74,7 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   }
 
   const multiplier =
-    mode === "Clasic" ? 2.7 : mode === "Pro" ? 3.2 : 3.8;
+    mode === "Clasic" ? 2.7 : mode === "Pro" ? 3.2 : 3.2;
   const yieldPrice_norm = finalCostPerUnitYield_norm * multiplier;
 
   const costPerM2_norm = pricePerMeter / rolloWidthM;
@@ -122,9 +122,7 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
           minimumFractionDigits: 0,
         })}
       </p>
-      {mode === "Alfombra" && (
-        <p className="alfombra-text">50% off en la segunda unidad</p>
-      )}
+      
     </div>
   );
 };

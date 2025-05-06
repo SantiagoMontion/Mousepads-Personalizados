@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/MousepadContainer.css";
 
 const rolloData = {
   Pro: { width: 125, pricePerMeter: 36145 },

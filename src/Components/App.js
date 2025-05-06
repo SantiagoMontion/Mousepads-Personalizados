@@ -1,77 +1,70 @@
 import "../css/App.css";
-
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+
 import Navbar from "./Navbar";
-import MousepadContainer from "./MousepadContainer";
 import Footer from "./footer";
+import MousepadContainer from "./MousepadContainer";
 import Form from "./Form.js";
 import Calculador from "./Calculador.js";
 import Info from "./Info.js";
 import Home from "./Home.js";
 
+function Layout({ children }) {
+  const { pathname } = useLocation();
+  // Define aquí las rutas en las que NO quieres ni navbar ni footer
+  const hideNavAndFooter = pathname === "/calculadora";
+
+  return (
+    <>
+      {!hideNavAndFooter && <Navbar />}
+      <main>{children}</main>
+      {!hideNavAndFooter && <Footer />}
+    </>
+  );
+}
+
 function App() {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
-  // Creamos un ref para el input de archivo.
-  const [price, setPrice] = useState('')
+  const [price, setPrice] = useState("");
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFile(selectedFile); // Guardamos el archivo en el estado
+    setFile(selectedFile);
   };
 
   const handleRemoveFile = () => {
-    
-    setFile(null);       // Elimina el archivo del estado
-    setPreview("");      // Limpia la preview
-    // Reinicia el valor del input file asignado a fileInputRef
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    setFile(null);
+    setPreview("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
-
-  // const WithNavbar = () => (
-  //   <>
-  //     <div className="App">
-  //       <div className="scroll-back">
-  //         <Navbar />
-  //       </div>
-  //     </div>
-  
-  //     <Outlet />
-  
-  //     <Footer />
-  //   </>
-  // );
-  
 
   useEffect(() => {
     if (!file) {
       setPreview("");
       return;
     }
-    // Se genera la URL para la preview del archivo
     const objectUrl = URL.createObjectURL(file);
     setPreview(objectUrl);
-    // Cleanup: revocar la URL cuando file cambie o el componente se desmonte
-    return () => {
-      URL.revokeObjectURL(objectUrl);
-    };
+    return () => URL.revokeObjectURL(objectUrl);
   }, [file]);
 
   return (
-    <>
-    <Navbar></Navbar>
     <Router>
-      <Routes>
-        {/* Todas estas rutas van envueltas en WithNavbar */}
-        <Route >
+      <Layout>
+        <Routes>
           <Route
             path="/"
             element={
-              <MousepadContainer 
+              <MousepadContainer
                 onFileChange={handleFileChange}
                 file={file}
                 preview={preview}
@@ -82,22 +75,19 @@ function App() {
               />
             }
           />
-          <Route path="/formulario" element={<Form file={file} setFile={setFile} price={price} />} />
+          <Route
+            path="/formulario"
+            element={<Form file={file} setFile={setFile} price={price} />}
+          />
           <Route path="/informacion" element={<Info />} />
           <Route path="/calculadora" element={<Calculador />} />
-        </Route>
-
-        {/* Esta ruta va **sin** Navbar ni Footer */}
-        <Route path="/home" element={<Home />} />
-
-        {/* Wildcard */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Layout>
     </Router>
-    <Footer></Footer>
-    </>
   );
-  
 }
 
 export default App;
+

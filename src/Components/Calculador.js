@@ -167,7 +167,6 @@ const [heightInput, setHeightInput] = useState("");
       </div>
             </div>
 
-            <a href='/' className="create-button" >CREAR</a>
       
       
       </div>

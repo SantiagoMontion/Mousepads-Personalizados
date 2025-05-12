@@ -94,7 +94,13 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
           maximumFractionDigits: 0,
           minimumFractionDigits: 0,
         })}
+        
       </p>
+      <p className="minitext" >20% OFF con transferencia:     {" "}{" "}  
+        {( clientFinalPriceRounded * 0.8).toLocaleString("es-AR", {
+  maximumFractionDigits: 0,
+  minimumFractionDigits: 0,
+})}</p>
     </div>
   );
 };

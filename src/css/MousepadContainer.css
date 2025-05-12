@@ -9,6 +9,9 @@
   justify-content: center;
 }
 
+.minitext{font-size: 12px;line-height: 10px;margin-top: -20px;}
+
+
 html, body {
   background-color: #181818 !important;}
 
@@ -217,7 +220,7 @@ grid-template-columns: 1fr;
 }
 
 
-.p-calcu{text-align: center;margin-top: 25;color:#ECEDEA}
+.p-calcu{text-align: center;margin-top: 12px;color:#ECEDEA;}
 
 
 .alfombra-text{font-size: 11px !important;margin: 0;padding: 0;margin-top: -28px; text-align: center;}

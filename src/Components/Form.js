@@ -103,25 +103,24 @@ const ContactForm = ({ file, setFile , price}) => {
 
     // Agregar otros parámetros adicionales
     formData.append("subject", `Mousepad Personalizado ${nombreModelo} ${translateString(selectedClient)}`);
-    formData.append("message",`
-      Esta es la configuración:
+    formData.append("message", `
+  Esta es la configuración:
 
-      Tipo: ${translateString(mode)}
-      Circular?: ${translateString(isCircular)}
-      Medida: ${translateString(selectedClient)}
-      Precio ${price}
-      --------------------------
+  Tipo: ${translateString(mode)}
+  Circular?: ${translateString(isCircular)}
+  Medida: ${translateString(selectedClient)}
+  Precio: ${ (price * 0.8).toFixed(2) } 
+  --------------------------
 
-      Nombre del Modelo: ${nombreModelo}
-      Comentario extra para el armado: ${comentario}
-      Alineación: ${translateString(Align)}
-      Justificación: ${translateString(Justify)}
-      ¿Modo espejo?: ${translateString(isMirrored)}
-      Ajuste de la imagen: ${translateString(imageMode)}
-      Color del fondo?: ${translateString(selectedColor)}
-      Rotación?: ${translateString(rotacion)}
-    `);
-
+  Nombre del Modelo: ${nombreModelo}
+  Comentario extra para el armado: ${comentario}
+  Alineación: ${translateString(Align)}
+  Justificación: ${translateString(Justify)}
+  ¿Modo espejo?: ${translateString(isMirrored)}
+  Ajuste de la imagen: ${translateString(imageMode)}
+  Color del fondo?: ${translateString(selectedColor)}
+  Rotación?: ${translateString(rotacion)}
+`);
     // Usamos Formspree para enviar el formulario con el archivo
     setLoading(true);  // Activar el estado de carga
     handleSubmit(formData);  // Pasamos el formData al handleSubmit de Formspree

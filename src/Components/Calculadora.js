@@ -2,7 +2,7 @@ import React from "react";
 
 const rolloData = {
   Pro: { width: 125, pricePerMeter: 36145, multiplier: 3.2, baselineArea: 0.26 },
-  Classic: { width: 140, pricePerMeter: 23820, multiplier: 2.7, baselineArea: 0.36 },
+  Clasic: { width: 140, pricePerMeter: 23820, multiplier: 2.7, baselineArea: 0.36 },
   Alfombra: { width: 154, pricePerMeter: 25000, multiplier: 3.2, baselineArea: 0.36 },
 };
 
@@ -81,8 +81,8 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   const roundPrice = (price) => Math.round(price);
   let clientFinalPriceRounded = roundPrice(clientFinalPrice);
 
-  // ➕ Sumar $2000 si es serie Classic
-  if (mode === "Classic") {
+  // ➕ Sumar $2000 si es serie Clasic
+  if (mode === "Clasic") {
     clientFinalPriceRounded += 2000;
   }
 

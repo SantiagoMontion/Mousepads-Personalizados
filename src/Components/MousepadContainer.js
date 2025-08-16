@@ -289,12 +289,7 @@ const MousepadContainer = ({ onFileChange, file, setFile , onFileRemove , fileIn
           >
             PRO
           </button>
-          <button
-            onClick={() => handleModeChange("Alfombra")}
-            className={`btn-mode ${mode === "Alfombra" ? "active" : ""}`}
-          >
-            ALFOMBRA
-          </button>
+         
         </div>
 
 

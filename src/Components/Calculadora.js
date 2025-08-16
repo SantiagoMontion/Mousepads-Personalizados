@@ -81,7 +81,7 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   const roundPrice = (price) => Math.round(price);
   let clientFinalPriceRounded = roundPrice(clientFinalPrice);
 
-  // ➕ Sumar $2000 si es serie Clasic
+  // ➕ Sumar $2000 si es serie Clasic (antes de mostrar y antes del OFF)
   if (mode === "Clasic") {
     clientFinalPriceRounded += 2000;
   }

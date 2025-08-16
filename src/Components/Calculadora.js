@@ -34,7 +34,6 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
     mode === "Alfombra" &&
     pieceWidthNormalized === 1.4 &&
     pieceHeightNormalized === 1;
-
   const useRotatedModel =
     !isExactAlfombra &&
     pieceWidthNormalized > 1 &&
@@ -71,21 +70,18 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
     baseFinalPrice *= 1.3;
   }
 
-  // Redondear base antes del 25%
+  // ✅ Redondear base antes del 25%
   const roundBasePrice = (price) => Math.ceil(price / 500) * 500;
   const basePriceRounded = roundBasePrice(baseFinalPrice + areaSurcharge + extraCharge);
 
-  // Aplicar 25% y redondeo final
+  // ✅ Aplicar 25% y redondeo final
   let clientFinalPrice = basePriceRounded * 1.25;
   const roundPrice = (price) => Math.round(price);
   let clientFinalPriceRounded = roundPrice(clientFinalPrice);
 
-  // +$2000 NETOS si el modo contiene "clasic" (cubre "Clasic" y "Classic")
-  const isClassic =
-    typeof mode === "string" && mode.toLowerCase().includes("clasic");
-  const clientFinalPriceWithExtra = isClassic
-    ? clientFinalPriceRounded + 2000
-    : clientFinalPriceRounded;
+  // ➕ $2000 NETOS al final solo para "Clasic" (afecta también el OFF)
+  const clientFinalPriceWithExtra =
+    mode === "Clasic" ? clientFinalPriceRounded + 2000 : clientFinalPriceRounded;
 
   if (setPrice && typeof setPrice === "function") {
     setPrice(clientFinalPriceWithExtra);

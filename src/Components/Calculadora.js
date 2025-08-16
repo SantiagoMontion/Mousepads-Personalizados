@@ -20,14 +20,24 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   const pieceWidthNormalized = normalizedWidthCm / 100; 
   const pieceHeightNormalized = normalizedHeightCm / 100; 
 
-  const unitsHorizontal = Math.floor(rolloWidthM / pieceWidthNormalized) * Math.floor(1 / pieceHeightNormalized); 
-  const unitsRotated = Math.floor(rolloWidthM / pieceHeightNormalized) * Math.max(Math.floor(1 / pieceWidthNormalized), 1); 
+  const unitsHorizontal =
+    Math.floor(rolloWidthM / pieceWidthNormalized) *
+    Math.floor(1 / pieceHeightNormalized); 
+  const unitsRotated =
+    Math.floor(rolloWidthM / pieceHeightNormalized) *
+    Math.max(Math.floor(1 / pieceWidthNormalized), 1); 
   const unitsPerMeter = Math.max(unitsHorizontal, unitsRotated, 1); 
 
   const defaultPricePerUnit = pricePerMeter / unitsPerMeter; 
 
-  const isExactAlfombra = mode === "Alfombra" && pieceWidthNormalized === 1.4 && pieceHeightNormalized === 1; 
-  const useRotatedModel = !isExactAlfombra && pieceWidthNormalized > 1 && pieceWidthNormalized < rolloWidthM; 
+  const isExactAlfombra =
+    mode === "Alfombra" &&
+    pieceWidthNormalized === 1.4 &&
+    pieceHeightNormalized === 1; 
+  const useRotatedModel =
+    !isExactAlfombra &&
+    pieceWidthNormalized > 1 &&
+    pieceWidthNormalized < rolloWidthM; 
 
   let finalCostPerUnit; 
   if (useRotatedModel) { 
@@ -40,7 +50,6 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   } 
 
   const yieldPrice = finalCostPerUnit * multiplier; 
-
   const costPerM2 = pricePerMeter / rolloWidthM; 
   const area = pieceWidthNormalized * pieceHeightNormalized; 
   const areaPrice = area * costPerM2 * multiplier; 
@@ -57,19 +66,26 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
     baseFinalPrice *= 1.3; 
   } 
 
-  // ✅ Redondear base antes del aumento del 25% 
+  // Redondear base antes del 25%
   const roundBasePrice = (price) => Math.ceil(price / 500) * 500; 
   const basePriceRounded = roundBasePrice(baseFinalPrice + areaSurcharge + extraCharge); 
 
-  // ✅ Aplicar 25% al precio redondeado 
+  // Aplicar 25% y redondeo final (precio "normal" base)
   let clientFinalPrice = basePriceRounded * 1.25; 
-
-  // ✅ Redondeo final (puede ser a entero o múltiplo de 50/100 si preferís) 
-  const roundPrice = (price) => Math.round(price); // o Math.ceil(price / 50) * 50; 
+  const roundPrice = (price) => Math.round(price); 
   const clientFinalPriceRounded = roundPrice(clientFinalPrice); 
 
+  // === AJUSTE FINAL SOLICITADO ===
+  // 1) Calculamos transferencia base (20% OFF sobre el "normal" base)
+  const transferBase = roundPrice(clientFinalPriceRounded * 0.8);
+  // 2) Sumamos $2000 netos a la transferencia
+  const transferWithExtra = transferBase + 2000;
+  // 3) Recalculamos el precio "normal" en base a esa transferencia nueva
+  const normalFromTransfer = roundPrice(transferWithExtra / 0.8);
+
+  // Enviamos el precio normal recalculado (si es necesario)
   if (setPrice && typeof setPrice === "function") { 
-    setPrice(clientFinalPriceRounded); 
+    setPrice(normalFromTransfer); 
   } else { 
     console.error("setPrice no es una función", setPrice); 
   } 
@@ -77,14 +93,14 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   return ( 
     <div> 
       <p className="p-calcu"> 
-        ${clientFinalPriceRounded.toLocaleString("es-AR", { 
+        ${normalFromTransfer.toLocaleString("es-AR", { 
           maximumFractionDigits: 0, 
           minimumFractionDigits: 0, 
         })} 
       </p> 
       <p className="minitext"> 
-        20% OFF con transferencia:{" "}{" "} 
-        {(clientFinalPriceRounded * 0.8).toLocaleString("es-AR", { 
+        20% OFF con transferencia:{" "} 
+        {transferWithExtra.toLocaleString("es-AR", { 
           maximumFractionDigits: 0, 
           minimumFractionDigits: 0, 
         })} 

@@ -34,6 +34,7 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
     mode === "Alfombra" &&
     pieceWidthNormalized === 1.4 &&
     pieceHeightNormalized === 1;
+
   const useRotatedModel =
     !isExactAlfombra &&
     pieceWidthNormalized > 1 &&
@@ -70,24 +71,23 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
     baseFinalPrice *= 1.3;
   }
 
-  // ✅ Redondear base antes del aumento del 25%
+  // Redondear base antes del 25%
   const roundBasePrice = (price) => Math.ceil(price / 500) * 500;
   const basePriceRounded = roundBasePrice(baseFinalPrice + areaSurcharge + extraCharge);
 
-  // ✅ Aplicar 25% al precio redondeado
+  // Aplicar 25% y redondeo final
   let clientFinalPrice = basePriceRounded * 1.25;
-
-  // ✅ Redondeo final
   const roundPrice = (price) => Math.round(price);
   let clientFinalPriceRounded = roundPrice(clientFinalPrice);
 
-  // ➕ Sumar $2000 si es serie Clasic (antes de mostrar y antes del OFF)
+  // +$2000 NETOS al final si es Clasic (afecta también el OFF)
+  let clientFinalPriceWithExtra = clientFinalPriceRounded;
   if (mode === "Clasic") {
-    clientFinalPriceRounded += 2000;
+    clientFinalPriceWithExtra += 2000;
   }
 
   if (setPrice && typeof setPrice === "function") {
-    setPrice(clientFinalPriceRounded);
+    setPrice(clientFinalPriceWithExtra);
   } else {
     console.error("setPrice no es una función", setPrice);
   }
@@ -95,14 +95,14 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   return (
     <div>
       <p className="p-calcu">
-        ${clientFinalPriceRounded.toLocaleString("es-AR", {
+        ${clientFinalPriceWithExtra.toLocaleString("es-AR", {
           maximumFractionDigits: 0,
           minimumFractionDigits: 0,
         })}
       </p>
       <p className="minitext">
         20% OFF con transferencia:{" "}
-        {(clientFinalPriceRounded * 0.8).toLocaleString("es-AR", {
+        {(clientFinalPriceWithExtra * 0.8).toLocaleString("es-AR", {
           maximumFractionDigits: 0,
           minimumFractionDigits: 0,
         })}

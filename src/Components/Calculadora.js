@@ -2,7 +2,7 @@ import React from "react";
 
 const rolloData = {
   Pro: { width: 125, pricePerMeter: 36145, multiplier: 3.2, baselineArea: 0.26 },
-  Clasic: { width: 140, pricePerMeter: 23820, multiplier: 2.7, baselineArea: 0.36 },
+  Classic: { width: 140, pricePerMeter: 23820, multiplier: 2.7, baselineArea: 0.36 },
   Alfombra: { width: 154, pricePerMeter: 25000, multiplier: 3.2, baselineArea: 0.36 },
 };
 
@@ -77,9 +77,14 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   // ✅ Aplicar 25% al precio redondeado
   let clientFinalPrice = basePriceRounded * 1.25;
 
-  // ✅ Redondeo final (puede ser a entero o múltiplo de 50/100 si preferís)
-  const roundPrice = (price) => Math.round(price); // o Math.ceil(price / 50) * 50;
-  const clientFinalPriceRounded = roundPrice(clientFinalPrice);
+  // ✅ Redondeo final
+  const roundPrice = (price) => Math.round(price);
+  let clientFinalPriceRounded = roundPrice(clientFinalPrice);
+
+  // ➕ Sumar $2000 si es serie Classic
+  if (mode === "Classic") {
+    clientFinalPriceRounded += 2000;
+  }
 
   if (setPrice && typeof setPrice === "function") {
     setPrice(clientFinalPriceRounded);
@@ -94,13 +99,14 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
           maximumFractionDigits: 0,
           minimumFractionDigits: 0,
         })}
-        
       </p>
-      <p className="minitext" >20% OFF con transferencia:     {" "}{" "}  
-        {( clientFinalPriceRounded * 0.8).toLocaleString("es-AR", {
-  maximumFractionDigits: 0,
-  minimumFractionDigits: 0,
-})}</p>
+      <p className="minitext">
+        20% OFF con transferencia:{" "}
+        {(clientFinalPriceRounded * 0.8).toLocaleString("es-AR", {
+          maximumFractionDigits: 0,
+          minimumFractionDigits: 0,
+        })}
+      </p>
     </div>
   );
 };

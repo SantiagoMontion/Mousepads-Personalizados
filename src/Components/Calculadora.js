@@ -80,11 +80,12 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   const roundPrice = (price) => Math.round(price);
   let clientFinalPriceRounded = roundPrice(clientFinalPrice);
 
-  // +$2000 NETOS al final si es Clasic (afecta también el OFF)
-  let clientFinalPriceWithExtra = clientFinalPriceRounded;
-  if (mode === "Clasic") {
-    clientFinalPriceWithExtra += 2000;
-  }
+  // +$2000 NETOS si el modo contiene "clasic" (cubre "Clasic" y "Classic")
+  const isClassic =
+    typeof mode === "string" && mode.toLowerCase().includes("clasic");
+  const clientFinalPriceWithExtra = isClassic
+    ? clientFinalPriceRounded + 2000
+    : clientFinalPriceRounded;
 
   if (setPrice && typeof setPrice === "function") {
     setPrice(clientFinalPriceWithExtra);

@@ -75,15 +75,12 @@ const Calculadora = ({ width, height, mode, setPrice }) => {
   const roundPrice = (price) => Math.round(price); 
   const clientFinalPriceRounded = roundPrice(clientFinalPrice); 
 
-  // === AJUSTE FINAL SOLICITADO ===
-  // 1) Calculamos transferencia base (20% OFF sobre el "normal" base)
+  // === AJUSTE FINAL SOLO PARA CLASSIC ===
+  const isClassic = typeof mode === "string" && mode.toLowerCase().includes("clasic");
   const transferBase = roundPrice(clientFinalPriceRounded * 0.8);
-  // 2) Sumamos $2000 netos a la transferencia
-  const transferWithExtra = transferBase + 2000;
-  // 3) Recalculamos el precio "normal" en base a esa transferencia nueva
+  const transferWithExtra = isClassic ? transferBase + 2000 : transferBase;
   const normalFromTransfer = roundPrice(transferWithExtra / 0.8);
 
-  // Enviamos el precio normal recalculado (si es necesario)
   if (setPrice && typeof setPrice === "function") { 
     setPrice(normalFromTransfer); 
   } else { 
